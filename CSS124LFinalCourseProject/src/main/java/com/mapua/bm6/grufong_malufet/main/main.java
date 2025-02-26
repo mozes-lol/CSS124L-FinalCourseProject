@@ -26,18 +26,134 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        p_main = new javax.swing.JPanel();
+        p_header = new javax.swing.JPanel();
+        l_flightNumber = new javax.swing.JLabel();
+        comB_flightNumber = new javax.swing.JComboBox<>();
+        p_body = new javax.swing.JPanel();
+        p_footer = new javax.swing.JPanel();
+        b_clear = new javax.swing.JButton();
+        b_confirm = new javax.swing.JButton();
+        p_seats = new javax.swing.JPanel();
+        p_seat_1a = new javax.swing.JPanel();
+        b_seat_1a = new javax.swing.JButton();
+        p_seat_1b = new javax.swing.JPanel();
+        b_seat_1b = new javax.swing.JButton();
+        p_seat_2a = new javax.swing.JPanel();
+        b_seat_2a = new javax.swing.JButton();
+        p_seat_2b = new javax.swing.JPanel();
+        b_seat_2b = new javax.swing.JButton();
+        p_seat_3a = new javax.swing.JPanel();
+        b_seat_3a = new javax.swing.JButton();
+        p_seat_3b = new javax.swing.JPanel();
+        b_seat_3b = new javax.swing.JButton();
+        p_seat_4a = new javax.swing.JPanel();
+        b_seat_4a = new javax.swing.JButton();
+        p_seat_4b = new javax.swing.JPanel();
+        b_seat_4b = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        p_main.setBorder(javax.swing.BorderFactory.createTitledBorder("Passenger Details"));
+        p_main.setMinimumSize(new java.awt.Dimension(600, 600));
+        p_main.setPreferredSize(new java.awt.Dimension(600, 600));
+        p_main.setLayout(new java.awt.BorderLayout());
+
+        l_flightNumber.setText("Flight Number");
+        p_header.add(l_flightNumber);
+
+        comB_flightNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F1", "F2" }));
+        comB_flightNumber.setMinimumSize(new java.awt.Dimension(100, 22));
+        comB_flightNumber.setPreferredSize(new java.awt.Dimension(100, 22));
+        p_header.add(comB_flightNumber);
+
+        p_main.add(p_header, java.awt.BorderLayout.PAGE_START);
+
+        p_body.setLayout(new java.awt.BorderLayout());
+        p_main.add(p_body, java.awt.BorderLayout.CENTER);
+
+        b_clear.setText("Clear");
+        p_footer.add(b_clear);
+
+        b_confirm.setText("Confirm");
+        p_footer.add(b_confirm);
+
+        p_main.add(p_footer, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(p_main, java.awt.BorderLayout.CENTER);
+
+        p_seats.setBorder(javax.swing.BorderFactory.createTitledBorder("Seats"));
+        p_seats.setMinimumSize(new java.awt.Dimension(200, 2));
+        p_seats.setPreferredSize(new java.awt.Dimension(200, 600));
+        p_seats.setLayout(new java.awt.GridLayout(4, 2));
+
+        p_seat_1a.setLayout(new java.awt.BorderLayout());
+
+        b_seat_1a.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_1a.setText("1A");
+        p_seat_1a.add(b_seat_1a, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_1a);
+
+        p_seat_1b.setLayout(new java.awt.BorderLayout());
+
+        b_seat_1b.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_1b.setText("1B");
+        p_seat_1b.add(b_seat_1b, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_1b);
+
+        p_seat_2a.setLayout(new java.awt.BorderLayout());
+
+        b_seat_2a.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_2a.setText("2A");
+        p_seat_2a.add(b_seat_2a, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_2a);
+
+        p_seat_2b.setLayout(new java.awt.BorderLayout());
+
+        b_seat_2b.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_2b.setText("2B");
+        p_seat_2b.add(b_seat_2b, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_2b);
+
+        p_seat_3a.setLayout(new java.awt.BorderLayout());
+
+        b_seat_3a.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_3a.setText("3A");
+        p_seat_3a.add(b_seat_3a, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_3a);
+
+        p_seat_3b.setLayout(new java.awt.BorderLayout());
+
+        b_seat_3b.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_3b.setText("3B");
+        p_seat_3b.add(b_seat_3b, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_3b);
+
+        p_seat_4a.setLayout(new java.awt.BorderLayout());
+
+        b_seat_4a.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_4a.setText("4A");
+        p_seat_4a.add(b_seat_4a, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_4a);
+
+        p_seat_4b.setLayout(new java.awt.BorderLayout());
+
+        b_seat_4b.setBackground(new java.awt.Color(153, 255, 153));
+        b_seat_4b.setText("4B");
+        p_seat_4b.add(b_seat_4b, java.awt.BorderLayout.CENTER);
+
+        p_seats.add(p_seat_4b);
+
+        getContentPane().add(p_seats, java.awt.BorderLayout.LINE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +194,30 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_clear;
+    private javax.swing.JButton b_confirm;
+    private javax.swing.JButton b_seat_1a;
+    private javax.swing.JButton b_seat_1b;
+    private javax.swing.JButton b_seat_2a;
+    private javax.swing.JButton b_seat_2b;
+    private javax.swing.JButton b_seat_3a;
+    private javax.swing.JButton b_seat_3b;
+    private javax.swing.JButton b_seat_4a;
+    private javax.swing.JButton b_seat_4b;
+    private javax.swing.JComboBox<String> comB_flightNumber;
+    private javax.swing.JLabel l_flightNumber;
+    private javax.swing.JPanel p_body;
+    private javax.swing.JPanel p_footer;
+    private javax.swing.JPanel p_header;
+    private javax.swing.JPanel p_main;
+    private javax.swing.JPanel p_seat_1a;
+    private javax.swing.JPanel p_seat_1b;
+    private javax.swing.JPanel p_seat_2a;
+    private javax.swing.JPanel p_seat_2b;
+    private javax.swing.JPanel p_seat_3a;
+    private javax.swing.JPanel p_seat_3b;
+    private javax.swing.JPanel p_seat_4a;
+    private javax.swing.JPanel p_seat_4b;
+    private javax.swing.JPanel p_seats;
     // End of variables declaration//GEN-END:variables
 }
