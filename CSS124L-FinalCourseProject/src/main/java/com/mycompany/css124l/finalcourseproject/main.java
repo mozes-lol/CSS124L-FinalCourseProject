@@ -9,10 +9,18 @@ package com.mycompany.css124l.finalcourseproject;
  * @author John Mark Garcia
  */
 public class main extends javax.swing.JFrame {
-
-    /**
-     * Creates new form main
-     */
+    String[][] F1SeatList = {
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"}
+    };
+    String[][] F2SeatList = {
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"}
+    };
     public main() {
         initComponents();
     }
