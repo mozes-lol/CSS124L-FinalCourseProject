@@ -4,25 +4,59 @@
  */
 package com.mycompany.css124l.finalcourseproject;
 
+import java.awt.Color;
+
 /**
  *
  * @author John Mark Garcia
  */
 public class main extends javax.swing.JFrame {
+    /*
+        How I structure the 2D array is similar to what is displayed in the UI:
+        "vacant" = will turn the seat button GREEN
+        "occupied" or any other words = will turn the seat button RED
+    */
     String[][] F1SeatList = {
-        {"vacant", "vacant"},
-        {"vacant", "vacant"},
-        {"vacant", "vacant"},
-        {"vacant", "vacant"}
+        {"o", "vacant"},
+        {"vacant", "o"},
+        {"o", "vacant"},
+        {"vacant", "o"}
     };
     String[][] F2SeatList = {
-        {"vacant", "vacant"},
-        {"vacant", "vacant"},
-        {"vacant", "vacant"},
-        {"vacant", "vacant"}
+        {"vacant", "o"},
+        {"o", "vacant"},
+        {"vacant", "o"},
+        {"o", "vacant"}
     };
     public main() {
         initComponents();
+    }
+    
+    public void CheckSeatList(String[][] SeatList) {
+        
+        if (SeatList[0][0] == "vacant") {b_seat_1a.setBackground(Color.green);}
+        else {b_seat_1a.setBackground(Color.red);}
+        
+        if (SeatList[0][1] == "vacant") {b_seat_1b.setBackground(Color.green);}
+        else {b_seat_1b.setBackground(Color.red);}
+        
+        if (SeatList[1][0] == "vacant") {b_seat_2a.setBackground(Color.green);}
+        else {b_seat_2a.setBackground(Color.red);}
+        
+        if (SeatList[1][1] == "vacant") {b_seat_2b.setBackground(Color.green);}
+        else {b_seat_2b.setBackground(Color.red);}
+        
+        if (SeatList[2][0] == "vacant") {b_seat_3a.setBackground(Color.green);}
+        else {b_seat_3a.setBackground(Color.red);}
+        
+        if (SeatList[2][1] == "vacant") {b_seat_3b.setBackground(Color.green);}
+        else {b_seat_3b.setBackground(Color.red);}
+        
+        if (SeatList[3][0] == "vacant") {b_seat_4a.setBackground(Color.green);}
+        else {b_seat_4a.setBackground(Color.red);}
+        
+        if (SeatList[3][1] == "vacant") {b_seat_4b.setBackground(Color.green);}
+        else {b_seat_4b.setBackground(Color.red);}
     }
 
     /**
@@ -74,6 +108,11 @@ public class main extends javax.swing.JFrame {
         comB_flightNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F1", "F2" }));
         comB_flightNumber.setMinimumSize(new java.awt.Dimension(100, 22));
         comB_flightNumber.setPreferredSize(new java.awt.Dimension(100, 22));
+        comB_flightNumber.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comB_flightNumberItemStateChanged(evt);
+            }
+        });
         p_header.add(comB_flightNumber);
 
         p_main.add(p_header, java.awt.BorderLayout.PAGE_START);
@@ -165,11 +204,21 @@ public class main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void comB_flightNumberItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comB_flightNumberItemStateChanged
+        switch(comB_flightNumber.getSelectedItem().toString()) {
+            case "F1":
+                CheckSeatList(F1SeatList);
+                break;
+            case "F2":
+                CheckSeatList(F2SeatList);
+                break;
+        }
+    }//GEN-LAST:event_comB_flightNumberItemStateChanged
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -191,9 +240,6 @@ public class main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new main().setVisible(true);
