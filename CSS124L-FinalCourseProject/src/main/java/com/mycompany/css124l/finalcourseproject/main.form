@@ -90,7 +90,397 @@
             </Constraint>
           </Constraints>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="l_additionalServices" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="l_flightCostSummary" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="chb_pwdAssistance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chb_priorityCheckinAndBoarding" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chb_inflightWifiAccess" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chb_extraSnacksAndDrinks" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chb_extraBaggage" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="l_emailAddress" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="tf_emailAddress" min="-2" pref="418" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="l_passportNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="l_name" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="l_address" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="l_nationality" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="tf_name" min="-2" pref="183" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="l_age" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tf_age" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="cb_nationality" min="-2" pref="185" max="-2" attributes="0"/>
+                                                  <Component id="tf_passportNumber" min="-2" pref="142" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="l_contactNumber" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="tf_contactNumber" min="-2" pref="152" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="l_gender" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="rb_male" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="rb_female" min="-2" pref="71" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="rb_others" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Component id="tf_address" min="-2" pref="465" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="l_dateOfFlight" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                          <Component id="l_departureAndDestination" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="cb_departureAndDestination" min="-2" pref="178" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="tf_dateofflight" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="l_mealPreference" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="cb_mealPreference" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Component id="l_addtionalNotes" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="516" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="l_name" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_name" min="-2" max="-2" attributes="0"/>
+                          <Component id="l_age" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_age" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="l_address" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_address" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="l_nationality" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_nationality" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="rb_male" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="rb_female" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="rb_others" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="l_gender" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="l_passportNumber" min="-2" max="-2" attributes="0"/>
+                          <Component id="l_contactNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_passportNumber" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_contactNumber" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="l_emailAddress" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_emailAddress" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="l_dateOfFlight" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_dateofflight" min="-2" max="-2" attributes="0"/>
+                          <Component id="l_mealPreference" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_mealPreference" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="l_departureAndDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_departureAndDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="l_additionalServices" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="chb_pwdAssistance" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="chb_extraBaggage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="chb_extraSnacksAndDrinks" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="chb_inflightWifiAccess" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="chb_priorityCheckinAndBoarding" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="l_flightCostSummary" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <Component id="l_addtionalNotes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="java.awt.Label" name="l_name">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Name:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="l_address">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Address:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.TextField" name="tf_name">
+            </Component>
+            <Component class="java.awt.TextField" name="tf_address">
+            </Component>
+            <Component class="java.awt.Label" name="l_age">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Age:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.TextField" name="tf_age">
+            </Component>
+            <Component class="java.awt.Label" name="l_nationality">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nationality:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="l_gender">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gender:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_male">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Male"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_nationality">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="10">
+                    <StringItem index="0" value="Select a Nationality"/>
+                    <StringItem index="1" value="Filipino"/>
+                    <StringItem index="2" value="American"/>
+                    <StringItem index="3" value="American"/>
+                    <StringItem index="4" value="Chinese"/>
+                    <StringItem index="5" value="Filipino"/>
+                    <StringItem index="6" value="Japanese"/>
+                    <StringItem index="7" value="Korean"/>
+                    <StringItem index="8" value="Singaporean"/>
+                    <StringItem index="9" value="Spanish"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_female">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Female"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rb_others">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Others"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="l_passportNumber">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Passport Number:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="l_contactNumber">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contact Number:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.TextField" name="tf_passportNumber">
+            </Component>
+            <Component class="java.awt.TextField" name="tf_contactNumber">
+            </Component>
+            <Component class="java.awt.Label" name="l_emailAddress">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Email Address:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.TextField" name="tf_emailAddress">
+            </Component>
+            <Component class="java.awt.Label" name="l_dateOfFlight">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Date of Flight:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.TextField" name="tf_dateofflight">
+            </Component>
+            <Component class="java.awt.Label" name="l_mealPreference">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Meal Preference:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_mealPreference">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Select a Meal"/>
+                    <StringItem index="1" value="Regular Meal"/>
+                    <StringItem index="2" value="Vegetarian Meal"/>
+                    <StringItem index="3" value="Kiddie Meal"/>
+                    <StringItem index="4" value="Salad Meal"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="java.awt.Label" name="l_additionalServices">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Additional Services:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chb_pwdAssistance">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="PWD assistance"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chb_extraBaggage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Extra Baggage"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chb_extraSnacksAndDrinks">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Extra Snacks &amp; Drinks"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chb_inflightWifiAccess">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="In-Flight Wi-Fi Access"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chb_priorityCheckinAndBoarding">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Priority Check in &amp; Boarding"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="l_flightCostSummary">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flight Cost Summary:"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="ta_flightCostSummary">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="l_departureAndDestination">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Departure &amp; Destination:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_departureAndDestination">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Select Destination"/>
+                    <StringItem index="1" value="Bicol International Airport"/>
+                    <StringItem index="2" value="Clark International Airport"/>
+                    <StringItem index="3" value="Mactan-Cebu International Airport"/>
+                    <StringItem index="4" value="NAIA"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="l_addtionalNotes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Additional Notes:"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="ta_additionalNotes">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="p_footer">
           <Constraints>

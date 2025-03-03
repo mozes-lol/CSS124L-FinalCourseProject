@@ -31,6 +31,42 @@ public class main extends javax.swing.JFrame {
         l_flightNumber = new javax.swing.JLabel();
         comB_flightNumber = new javax.swing.JComboBox<>();
         p_body = new javax.swing.JPanel();
+        l_name = new java.awt.Label();
+        l_address = new java.awt.Label();
+        tf_name = new java.awt.TextField();
+        tf_address = new java.awt.TextField();
+        l_age = new java.awt.Label();
+        tf_age = new java.awt.TextField();
+        l_nationality = new java.awt.Label();
+        l_gender = new java.awt.Label();
+        rb_male = new javax.swing.JRadioButton();
+        cb_nationality = new javax.swing.JComboBox<>();
+        rb_female = new javax.swing.JRadioButton();
+        rb_others = new javax.swing.JRadioButton();
+        l_passportNumber = new java.awt.Label();
+        l_contactNumber = new java.awt.Label();
+        tf_passportNumber = new java.awt.TextField();
+        tf_contactNumber = new java.awt.TextField();
+        l_emailAddress = new java.awt.Label();
+        tf_emailAddress = new java.awt.TextField();
+        l_dateOfFlight = new java.awt.Label();
+        tf_dateofflight = new java.awt.TextField();
+        l_mealPreference = new java.awt.Label();
+        cb_mealPreference = new javax.swing.JComboBox<>();
+        l_additionalServices = new java.awt.Label();
+        chb_pwdAssistance = new javax.swing.JCheckBox();
+        chb_extraBaggage = new javax.swing.JCheckBox();
+        chb_extraSnacksAndDrinks = new javax.swing.JCheckBox();
+        chb_inflightWifiAccess = new javax.swing.JCheckBox();
+        chb_priorityCheckinAndBoarding = new javax.swing.JCheckBox();
+        l_flightCostSummary = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_flightCostSummary = new javax.swing.JTextArea();
+        l_departureAndDestination = new javax.swing.JLabel();
+        cb_departureAndDestination = new javax.swing.JComboBox<>();
+        l_addtionalNotes = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_additionalNotes = new javax.swing.JTextArea();
         p_footer = new javax.swing.JPanel();
         b_clear = new javax.swing.JButton();
         b_confirm = new javax.swing.JButton();
@@ -70,7 +106,211 @@ public class main extends javax.swing.JFrame {
 
         p_main.add(p_header, java.awt.BorderLayout.PAGE_START);
 
-        p_body.setLayout(new java.awt.BorderLayout());
+        l_name.setText("Name:");
+
+        l_address.setText("Address:");
+
+        l_age.setText("Age:");
+
+        l_nationality.setText("Nationality:");
+
+        l_gender.setText("Gender:");
+
+        rb_male.setText("Male");
+
+        cb_nationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Nationality", "Filipino", "American", "American", "Chinese", "Filipino", "Japanese", "Korean", "Singaporean", "Spanish" }));
+
+        rb_female.setText("Female");
+
+        rb_others.setText("Others");
+
+        l_passportNumber.setText("Passport Number:");
+
+        l_contactNumber.setText("Contact Number:");
+
+        l_emailAddress.setText("Email Address:");
+
+        l_dateOfFlight.setText("Date of Flight:");
+
+        l_mealPreference.setText("Meal Preference:");
+
+        cb_mealPreference.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Meal", "Regular Meal", "Vegetarian Meal", "Kiddie Meal", "Salad Meal" }));
+
+        l_additionalServices.setText("Additional Services:");
+
+        chb_pwdAssistance.setText("PWD assistance");
+
+        chb_extraBaggage.setText("Extra Baggage");
+
+        chb_extraSnacksAndDrinks.setText("Extra Snacks & Drinks");
+
+        chb_inflightWifiAccess.setText("In-Flight Wi-Fi Access");
+
+        chb_priorityCheckinAndBoarding.setText("Priority Check in & Boarding");
+
+        l_flightCostSummary.setText("Flight Cost Summary:");
+
+        ta_flightCostSummary.setColumns(20);
+        ta_flightCostSummary.setRows(5);
+        jScrollPane1.setViewportView(ta_flightCostSummary);
+
+        l_departureAndDestination.setText("Departure & Destination:");
+
+        cb_departureAndDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Destination", "Bicol International Airport", "Clark International Airport", "Mactan-Cebu International Airport", "NAIA" }));
+
+        l_addtionalNotes.setText("Additional Notes:");
+
+        ta_additionalNotes.setColumns(20);
+        ta_additionalNotes.setRows(5);
+        jScrollPane2.setViewportView(ta_additionalNotes);
+
+        javax.swing.GroupLayout p_bodyLayout = new javax.swing.GroupLayout(p_body);
+        p_body.setLayout(p_bodyLayout);
+        p_bodyLayout.setHorizontalGroup(
+            p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_bodyLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p_bodyLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(l_additionalServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135)
+                        .addComponent(l_flightCostSummary))
+                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(p_bodyLayout.createSequentialGroup()
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chb_pwdAssistance)
+                                .addComponent(chb_priorityCheckinAndBoarding)
+                                .addComponent(chb_inflightWifiAccess)
+                                .addComponent(chb_extraSnacksAndDrinks)
+                                .addComponent(chb_extraBaggage))
+                            .addGap(53, 53, 53)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
+                            .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(l_passportNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(1, 1, 1)
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(p_bodyLayout.createSequentialGroup()
+                                        .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_age, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(p_bodyLayout.createSequentialGroup()
+                                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(p_bodyLayout.createSequentialGroup()
+                                                .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(p_bodyLayout.createSequentialGroup()
+                                                .addComponent(l_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(rb_male)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(rb_female, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(rb_others)))))
+                                .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
+                            .addComponent(l_dateOfFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(1, 1, 1)
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(p_bodyLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(l_departureAndDestination)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cb_departureAndDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(p_bodyLayout.createSequentialGroup()
+                                    .addComponent(tf_dateofflight, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cb_mealPreference, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(l_addtionalNotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        p_bodyLayout.setVerticalGroup(
+            p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_bodyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rb_male, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rb_female, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rb_others))
+                        .addComponent(l_gender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(l_dateOfFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_dateofflight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_departureAndDestination)
+                    .addComponent(cb_departureAndDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(p_bodyLayout.createSequentialGroup()
+                        .addComponent(l_additionalServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(chb_pwdAssistance)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_extraBaggage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_extraSnacksAndDrinks)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_inflightWifiAccess)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_priorityCheckinAndBoarding))
+                    .addGroup(p_bodyLayout.createSequentialGroup()
+                        .addComponent(l_flightCostSummary)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(l_addtionalNotes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
         p_main.add(p_body, java.awt.BorderLayout.CENTER);
 
         b_clear.setText("Clear");
@@ -204,8 +444,32 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton b_seat_3b;
     private javax.swing.JButton b_seat_4a;
     private javax.swing.JButton b_seat_4b;
+    private javax.swing.JComboBox<String> cb_departureAndDestination;
+    private javax.swing.JComboBox<String> cb_mealPreference;
+    private javax.swing.JComboBox<String> cb_nationality;
+    private javax.swing.JCheckBox chb_extraBaggage;
+    private javax.swing.JCheckBox chb_extraSnacksAndDrinks;
+    private javax.swing.JCheckBox chb_inflightWifiAccess;
+    private javax.swing.JCheckBox chb_priorityCheckinAndBoarding;
+    private javax.swing.JCheckBox chb_pwdAssistance;
     private javax.swing.JComboBox<String> comB_flightNumber;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.Label l_additionalServices;
+    private java.awt.Label l_address;
+    private javax.swing.JLabel l_addtionalNotes;
+    private java.awt.Label l_age;
+    private java.awt.Label l_contactNumber;
+    private java.awt.Label l_dateOfFlight;
+    private javax.swing.JLabel l_departureAndDestination;
+    private java.awt.Label l_emailAddress;
+    private javax.swing.JLabel l_flightCostSummary;
     private javax.swing.JLabel l_flightNumber;
+    private java.awt.Label l_gender;
+    private java.awt.Label l_mealPreference;
+    private java.awt.Label l_name;
+    private java.awt.Label l_nationality;
+    private java.awt.Label l_passportNumber;
     private javax.swing.JPanel p_body;
     private javax.swing.JPanel p_footer;
     private javax.swing.JPanel p_header;
@@ -219,5 +483,17 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel p_seat_4a;
     private javax.swing.JPanel p_seat_4b;
     private javax.swing.JPanel p_seats;
+    private javax.swing.JRadioButton rb_female;
+    private javax.swing.JRadioButton rb_male;
+    private javax.swing.JRadioButton rb_others;
+    private javax.swing.JTextArea ta_additionalNotes;
+    private javax.swing.JTextArea ta_flightCostSummary;
+    private java.awt.TextField tf_address;
+    private java.awt.TextField tf_age;
+    private java.awt.TextField tf_contactNumber;
+    private java.awt.TextField tf_dateofflight;
+    private java.awt.TextField tf_emailAddress;
+    private java.awt.TextField tf_name;
+    private java.awt.TextField tf_passportNumber;
     // End of variables declaration//GEN-END:variables
 }
