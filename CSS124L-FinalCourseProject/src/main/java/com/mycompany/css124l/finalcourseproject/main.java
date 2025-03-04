@@ -5,6 +5,7 @@
 package com.mycompany.css124l.finalcourseproject;
 
 import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  *
@@ -30,6 +31,16 @@ public class main extends javax.swing.JFrame {
     };
     public main() {
         initComponents();
+        customizeSeatButtons(); 
+       
+        b_seat_1a.setBackground(Color.GREEN);
+        b_seat_1b.setBackground(Color.GREEN);
+        b_seat_2a.setBackground(Color.GREEN);
+        b_seat_2b.setBackground(Color.GREEN);
+        b_seat_3a.setBackground(Color.GREEN);
+        b_seat_3b.setBackground(Color.GREEN);
+        b_seat_4a.setBackground(Color.GREEN);
+        b_seat_4b.setBackground(Color.GREEN);
     }
     
     public void CheckSeatList(String[][] SeatList) {
@@ -369,6 +380,11 @@ public class main extends javax.swing.JFrame {
         p_footer.add(b_clear);
 
         b_confirm.setText("Confirm");
+        b_confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_confirmActionPerformed(evt);
+            }
+        });
         p_footer.add(b_confirm);
 
         p_main.add(p_footer, java.awt.BorderLayout.PAGE_END);
@@ -384,6 +400,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_1a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_1a.setText("1A");
+        b_seat_1a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_1aActionPerformed(evt);
+            }
+        });
         p_seat_1a.add(b_seat_1a, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_1a);
@@ -392,6 +413,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_1b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_1b.setText("1B");
+        b_seat_1b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_1bActionPerformed(evt);
+            }
+        });
         p_seat_1b.add(b_seat_1b, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_1b);
@@ -400,6 +426,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_2a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_2a.setText("2A");
+        b_seat_2a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_2aActionPerformed(evt);
+            }
+        });
         p_seat_2a.add(b_seat_2a, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_2a);
@@ -408,6 +439,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_2b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_2b.setText("2B");
+        b_seat_2b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_2bActionPerformed(evt);
+            }
+        });
         p_seat_2b.add(b_seat_2b, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_2b);
@@ -416,6 +452,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_3a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_3a.setText("3A");
+        b_seat_3a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_3aActionPerformed(evt);
+            }
+        });
         p_seat_3a.add(b_seat_3a, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_3a);
@@ -424,6 +465,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_3b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_3b.setText("3B");
+        b_seat_3b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_3bActionPerformed(evt);
+            }
+        });
         p_seat_3b.add(b_seat_3b, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_3b);
@@ -432,6 +478,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_4a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_4a.setText("4A");
+        b_seat_4a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_4aActionPerformed(evt);
+            }
+        });
         p_seat_4a.add(b_seat_4a, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_4a);
@@ -440,6 +491,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_4b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_4b.setText("4B");
+        b_seat_4b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seat_4bActionPerformed(evt);
+            }
+        });
         p_seat_4b.add(b_seat_4b, java.awt.BorderLayout.CENTER);
 
         p_seats.add(p_seat_4b);
@@ -465,9 +521,137 @@ public class main extends javax.swing.JFrame {
         CheckSeatList(F1SeatList);
     }//GEN-LAST:event_formWindowOpened
 
+    private void b_seat_1aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1aActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_1a);
+    }//GEN-LAST:event_b_seat_1aActionPerformed
+
+    private void b_seat_1bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1bActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_1b);
+    }//GEN-LAST:event_b_seat_1bActionPerformed
+
+    private void b_seat_2aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2aActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_2a);
+    }//GEN-LAST:event_b_seat_2aActionPerformed
+
+    private void b_seat_2bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2bActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_2b);
+    }//GEN-LAST:event_b_seat_2bActionPerformed
+
+    private void b_seat_3aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3aActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_3a);
+    }//GEN-LAST:event_b_seat_3aActionPerformed
+
+    private void b_seat_3bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3bActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_3b);
+    }//GEN-LAST:event_b_seat_3bActionPerformed
+
+    private void b_seat_4aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4aActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_4a);
+    }//GEN-LAST:event_b_seat_4aActionPerformed
+
+    private void b_seat_4bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4bActionPerformed
+        // TODO add your handling code here:
+         seatButtonClicked(b_seat_4b);
+    }//GEN-LAST:event_b_seat_4bActionPerformed
+
+    private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
+        // TODO add your handling code here:
+        if (currentlySelectedSeat != null) {
+            currentlySelectedSeat.setBackground(Color.RED);
+            // Optionally disable the button so it can't be clicked again
+            currentlySelectedSeat.setEnabled(false);
+            // Clear the reference
+            currentlySelectedSeat = null;
+        }
+    }//GEN-LAST:event_b_confirmActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+     private void customizeSeatButtons() {
+    b_seat_1a.setOpaque(true);
+    b_seat_1a.setContentAreaFilled(true);
+    b_seat_1a.setBorderPainted(true);
+    b_seat_1a.setFocusPainted(false);
+    b_seat_1a.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_1b.setOpaque(true);
+    b_seat_1b.setContentAreaFilled(true);
+    b_seat_1b.setBorderPainted(true);
+    b_seat_1b.setFocusPainted(false);
+    b_seat_1b.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_2a.setOpaque(true);
+    b_seat_2a.setContentAreaFilled(true);
+    b_seat_2a.setBorderPainted(true);
+    b_seat_2a.setFocusPainted(false);
+    b_seat_2a.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_2b.setOpaque(true);
+    b_seat_2b.setContentAreaFilled(true);
+    b_seat_2b.setBorderPainted(true);
+    b_seat_2b.setFocusPainted(false);
+    b_seat_2b.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_3a.setOpaque(true);
+    b_seat_3a.setContentAreaFilled(true);
+    b_seat_3a.setBorderPainted(true);
+    b_seat_3a.setFocusPainted(false);
+    b_seat_3a.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_3b.setOpaque(true);
+    b_seat_3b.setContentAreaFilled(true);
+    b_seat_3b.setBorderPainted(true);
+    b_seat_3b.setFocusPainted(false);
+    b_seat_3b.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_4a.setOpaque(true);
+    b_seat_4a.setContentAreaFilled(true);
+    b_seat_4a.setBorderPainted(true);
+    b_seat_4a.setFocusPainted(false);
+    b_seat_4a.setBackground(java.awt.Color.GREEN);
+    
+    b_seat_4b.setOpaque(true);
+    b_seat_4b.setContentAreaFilled(true);
+    b_seat_4b.setBorderPainted(true);
+    b_seat_4b.setFocusPainted(false);
+    b_seat_4b.setBackground(java.awt.Color.GREEN);
+         
+     }
+          private void seatButtonClicked(JButton seatButton) {
+              
+    
+    
+        // If the seat is RED, do nothing (occupied)
+        if (seatButton.getBackground().equals(Color.RED)) {
+            return;
+        }
+
+        // If this seat is already selected (yellow), deselect it
+        if (seatButton.getBackground().equals(Color.YELLOW)) {
+            seatButton.setBackground(Color.GREEN);
+            currentlySelectedSeat = null;
+        } 
+        // Otherwise, seat is green (vacant)
+        else {
+            // If another seat was selected, turn it green
+            if (currentlySelectedSeat != null) {
+                currentlySelectedSeat.setBackground(Color.GREEN);
+            }
+            // Mark this seat as selected
+            seatButton.setBackground(Color.YELLOW);
+            currentlySelectedSeat = seatButton;
+        }
+    }
+          
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
