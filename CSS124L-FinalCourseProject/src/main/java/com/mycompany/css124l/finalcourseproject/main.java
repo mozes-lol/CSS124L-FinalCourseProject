@@ -16,17 +16,17 @@ public class main extends javax.swing.JFrame {
         "vacant" = will turn the seat button GREEN
         "occupied" or any other words = will turn the seat button RED
     */
-    String[][] F1SeatList = {
-        {"o", "vacant"},
-        {"vacant", "o"},
-        {"o", "vacant"},
-        {"vacant", "o"}
+    static String[][] F1SeatList = {
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"}
     };
-    String[][] F2SeatList = {
-        {"vacant", "o"},
-        {"o", "vacant"},
-        {"vacant", "o"},
-        {"o", "vacant"}
+    static String[][] F2SeatList = {
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"},
+        {"vacant", "vacant"}
     };
     public main() {
         initComponents();
@@ -96,6 +96,11 @@ public class main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         p_main.setBorder(javax.swing.BorderFactory.createTitledBorder("Passenger Details"));
         p_main.setMinimumSize(new java.awt.Dimension(600, 600));
@@ -214,6 +219,11 @@ public class main extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_comB_flightNumberItemStateChanged
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:\
+        CheckSeatList(F1SeatList);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
