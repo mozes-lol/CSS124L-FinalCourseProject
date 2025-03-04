@@ -6,6 +6,7 @@ package com.mycompany.css124l.finalcourseproject;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -379,6 +380,11 @@ public class main extends javax.swing.JFrame {
         p_main.add(p_body, java.awt.BorderLayout.CENTER);
 
         b_clear.setText("Clear");
+        b_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_clearActionPerformed(evt);
+            }
+        });
         p_footer.add(b_clear);
 
         b_confirm.setText("Confirm");
@@ -565,15 +571,19 @@ public class main extends javax.swing.JFrame {
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
 
-        // TODO add your handling code here:
-        if (currentlySelectedSeat != null) {
-            currentlySelectedSeat.setBackground(Color.RED);
-            // Optionally disable the button so it can't be clicked again
-            currentlySelectedSeat.setEnabled(false);
-            // Clear the reference
-            currentlySelectedSeat = null;
-        }
+        int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+            String flightNumber = (String) comB_flightNumber.getSelectedItem();
+            JOptionPane.showMessageDialog(this, "Flight Confirmed!\nFlight Number: " + flightNumber, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        }   
     }//GEN-LAST:event_b_confirmActionPerformed
+
+    private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
+        int result = JOptionPane.showConfirmDialog(this, "Do you want to clear all fields", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+            // clear all fields
+        }   
+    }//GEN-LAST:event_b_clearActionPerformed
 
     /**
      * @param args the command line arguments
