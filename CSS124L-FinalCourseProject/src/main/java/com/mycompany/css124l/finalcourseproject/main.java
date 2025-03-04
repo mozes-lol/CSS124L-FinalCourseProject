@@ -4,8 +4,6 @@
  */
 package com.mycompany.css124l.finalcourseproject;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author John Mark Garcia
@@ -65,14 +63,9 @@ public class main extends javax.swing.JFrame {
         l_flightNumber.setText("Flight Number");
         p_header.add(l_flightNumber);
 
-        comB_flightNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "F25", "F26", "F27", "F28", "F29", "F30", "F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47", "F48", "F49", "F50" }));
+        comB_flightNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F1", "F2" }));
         comB_flightNumber.setMinimumSize(new java.awt.Dimension(100, 22));
         comB_flightNumber.setPreferredSize(new java.awt.Dimension(100, 22));
-        comB_flightNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comB_flightNumberActionPerformed(evt);
-            }
-        });
         p_header.add(comB_flightNumber);
 
         p_main.add(p_header, java.awt.BorderLayout.PAGE_START);
@@ -81,19 +74,9 @@ public class main extends javax.swing.JFrame {
         p_main.add(p_body, java.awt.BorderLayout.CENTER);
 
         b_clear.setText("Clear");
-        b_clear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_clearActionPerformed(evt);
-            }
-        });
         p_footer.add(b_clear);
 
         b_confirm.setText("Confirm");
-        b_confirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_confirmActionPerformed(evt);
-            }
-        });
         p_footer.add(b_confirm);
 
         p_main.add(p_footer, java.awt.BorderLayout.PAGE_END);
@@ -173,28 +156,6 @@ public class main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
-        // TODO add your handling code here:
-        
-         int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear?", "Confirmation", JOptionPane.YES_NO_OPTION);
-    if (result == JOptionPane.YES_OPTION) {
-        comB_flightNumber.setSelectedIndex(0); 
-    }
-    }//GEN-LAST:event_b_clearActionPerformed
-
-    private void comB_flightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comB_flightNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comB_flightNumberActionPerformed
-
-    private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
-      int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
-    if (result == JOptionPane.YES_OPTION) {
-        String flightNumber = (String) comB_flightNumber.getSelectedItem();
-        JOptionPane.showMessageDialog(this, "Flight Confirmed!\nFlight Number: " + flightNumber, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-    }
-        
-    }//GEN-LAST:event_b_confirmActionPerformed
 
     /**
      * @param args the command line arguments
