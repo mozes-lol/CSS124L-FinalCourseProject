@@ -307,6 +307,7 @@
             <Component class="java.awt.TextField" name="tf_age">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_ageActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tf_ageKeyTyped"/>
               </Events>
             </Component>
             <Component class="java.awt.Label" name="l_nationality">

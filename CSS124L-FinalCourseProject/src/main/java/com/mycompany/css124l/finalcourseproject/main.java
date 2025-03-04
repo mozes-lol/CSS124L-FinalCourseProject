@@ -13,14 +13,10 @@ import javax.swing.JOptionPane;
  *
  * @author John Mark Garcia
  */
+
 public class main extends javax.swing.JFrame {
-    /*
-        How I structure the 2D array is similar to what is displayed in the UI:
-        "vacant" = will turn the seat button GREEN
-        "occupied" or any other words = will turn the seat button RED
-    */
     
-    JButton currentlySelectedSeat;
+    private JButton currentlySelectedSeat = null; // Store the selected seat
     static String[][] F1SeatList = {
         {"vacant", "vacant"},
         {"vacant", "vacant"},
@@ -33,46 +29,44 @@ public class main extends javax.swing.JFrame {
         {"vacant", "vacant"},
         {"vacant", "vacant"}
     };
+
     public main() {
         initComponents();
-        customizeSeatButtons(); 
-       
-        b_seat_1a.setBackground(Color.GREEN);
-        b_seat_1b.setBackground(Color.GREEN);
-        b_seat_2a.setBackground(Color.GREEN);
-        b_seat_2b.setBackground(Color.GREEN);
-        b_seat_3a.setBackground(Color.GREEN);
-        b_seat_3b.setBackground(Color.GREEN);
-        b_seat_4a.setBackground(Color.GREEN);
-        b_seat_4b.setBackground(Color.GREEN);
+        CheckSeatList(F1SeatList); // Check seat availability on startup
     }
     
     public void CheckSeatList(String[][] SeatList) {
-        
-        if (SeatList[0][0] == "vacant") {b_seat_1a.setBackground(Color.green);}
-        else {b_seat_1a.setBackground(Color.red);}
-        
-        if (SeatList[0][1] == "vacant") {b_seat_1b.setBackground(Color.green);}
-        else {b_seat_1b.setBackground(Color.red);}
-        
-        if (SeatList[1][0] == "vacant") {b_seat_2a.setBackground(Color.green);}
-        else {b_seat_2a.setBackground(Color.red);}
-        
-        if (SeatList[1][1] == "vacant") {b_seat_2b.setBackground(Color.green);}
-        else {b_seat_2b.setBackground(Color.red);}
-        
-        if (SeatList[2][0] == "vacant") {b_seat_3a.setBackground(Color.green);}
-        else {b_seat_3a.setBackground(Color.red);}
-        
-        if (SeatList[2][1] == "vacant") {b_seat_3b.setBackground(Color.green);}
-        else {b_seat_3b.setBackground(Color.red);}
-        
-        if (SeatList[3][0] == "vacant") {b_seat_4a.setBackground(Color.green);}
-        else {b_seat_4a.setBackground(Color.red);}
-        
-        if (SeatList[3][1] == "vacant") {b_seat_4b.setBackground(Color.green);}
-        else {b_seat_4b.setBackground(Color.red);}
+        JButton[][] buttons = {
+            {b_seat_1a, b_seat_1b},
+            {b_seat_2a, b_seat_2b},
+            {b_seat_3a, b_seat_3b},
+            {b_seat_4a, b_seat_4b}
+        };
+
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 2; col++) {
+                if (SeatList[row][col].equals("vacant")) {
+                    buttons[row][col].setBackground(Color.GREEN);
+                } else {
+                    buttons[row][col].setBackground(Color.RED);
+                }
+            }
+        }
     }
+
+    private void seatButtonClicked(JButton seat, int row, int col) {
+        if (currentlySelectedSeat != null) {
+            currentlySelectedSeat.setBackground(Color.GREEN); // Reset previous seat color
+        }
+        currentlySelectedSeat = seat;
+        currentlySelectedSeat.setBackground(Color.YELLOW); // Highlight selected seat
+
+        // Mark the seat as "selected" internally
+        F1SeatList[row][col] = "selected"; 
+        
+        System.out.println("Selected Seat: " + seat.getText());
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,6 +188,11 @@ public class main extends javax.swing.JFrame {
         tf_age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_ageActionPerformed(evt);
+            }
+        });
+        tf_age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tf_ageKeyTyped(evt);
             }
         });
 
@@ -654,118 +653,134 @@ public class main extends javax.swing.JFrame {
 
     private void b_seat_1aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1aActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_1a);
+        seatButtonClicked(b_seat_1a, 0, 0);
     }//GEN-LAST:event_b_seat_1aActionPerformed
 
     private void b_seat_1bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1bActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_1b);
+       seatButtonClicked(b_seat_1b, 0, 1);
     }//GEN-LAST:event_b_seat_1bActionPerformed
 
     private void b_seat_2aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2aActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_2a);
+       seatButtonClicked(b_seat_2a, 1, 0);
     }//GEN-LAST:event_b_seat_2aActionPerformed
 
     private void b_seat_2bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2bActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_2b);
+         seatButtonClicked(b_seat_2b, 1, 1);
     }//GEN-LAST:event_b_seat_2bActionPerformed
 
     private void b_seat_3aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3aActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_3a);
+         seatButtonClicked(b_seat_3a, 2, 0);
     }//GEN-LAST:event_b_seat_3aActionPerformed
 
     private void b_seat_3bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3bActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_3b);
+         seatButtonClicked(b_seat_3b, 2, 1);
     }//GEN-LAST:event_b_seat_3bActionPerformed
 
     private void b_seat_4aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4aActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_4a);
+         seatButtonClicked(b_seat_4a, 3, 0);
     }//GEN-LAST:event_b_seat_4aActionPerformed
 
     private void b_seat_4bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4bActionPerformed
         // TODO add your handling code here:
-         seatButtonClicked(b_seat_4b);
+         seatButtonClicked(b_seat_4b, 3, 1);
     }//GEN-LAST:event_b_seat_4bActionPerformed
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
-    int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
-    if (result == JOptionPane.YES_OPTION) {
-        //values 
-        String name = tf_name.getText();
-        String age = tf_age.getText();
-        String address = tf_address.getText();
-        String nationality = (String) cb_nationality.getSelectedItem();
-        String gender = rb_male.isSelected() ? "Male" : rb_female.isSelected() ? "Female" : rb_others.isSelected() ? "Others" : "Not Selected";
-        String passportNumber = tf_passportNumber.getText();
-        String contactNumber = tf_contactNumber.getText();
-        String emailAddress = tf_emailAddress.getText();
-        String dateOfFlight = tf_dateofflight.getText();
-        String mealPreference = (String) cb_mealPreference.getSelectedItem();
-        String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
+ int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
+if (result == JOptionPane.YES_OPTION) {
+    // Get values from input fields
+    String name = tf_name.getText();
+    String age = tf_age.getText();
+    String address = tf_address.getText();
+    String nationality = (String) cb_nationality.getSelectedItem();
+    String gender = rb_male.isSelected() ? "Male" : rb_female.isSelected() ? "Female" : rb_others.isSelected() ? "Others" : "Not Selected";
+    String passportNumber = tf_passportNumber.getText();
+    String contactNumber = tf_contactNumber.getText();
+    String emailAddress = tf_emailAddress.getText();
+    String dateOfFlight = tf_dateofflight.getText();
+    String mealPreference = (String) cb_mealPreference.getSelectedItem();
+    String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
+    
+    // Get additional services
+    String additionalServices = "";
+    if (chb_pwdAssistance.isSelected()) additionalServices += "PWD Assistance, ";
+    if (chb_extraBaggage.isSelected()) additionalServices += "Extra Baggage, ";
+    if (chb_extraSnacksAndDrinks.isSelected()) additionalServices += "Extra Snacks & Drinks, ";
+    if (chb_inflightWifiAccess.isSelected()) additionalServices += "In-Flight Wi-Fi Access, ";
+    if (chb_priorityCheckinAndBoarding.isSelected()) additionalServices += "Priority Check-in & Boarding, ";
 
-        // Additional services
-        String additionalServices = "";
-        if (chb_pwdAssistance.isSelected()) additionalServices += "PWD Assistance, ";
-        if (chb_extraBaggage.isSelected()) additionalServices += "Extra Baggage, ";
-        if (chb_extraSnacksAndDrinks.isSelected()) additionalServices += "Extra Snacks & Drinks, ";
-        if (chb_inflightWifiAccess.isSelected()) additionalServices += "In-Flight Wi-Fi Access, ";
-        if (chb_priorityCheckinAndBoarding.isSelected()) additionalServices += "Priority Check-in & Boarding, ";
-        
-        if (!additionalServices.isEmpty()) {
-            additionalServices = additionalServices.substring(0, additionalServices.length() - 2);
-        } else {
-            additionalServices = "None";
-        }
-
-        // Display 
-        String message = "Flight Confirmed!\n"
-                + "Name: " + name + "\n"
-                + "Age: " + age + "\n"
-                + "Address: " + address + "\n"
-                + "Nationality: " + nationality + "\n"
-                + "Gender: " + gender + "\n"
-                + "Passport Number: " + passportNumber + "\n"
-                + "Contact Number: " + contactNumber + "\n"
-                + "Email Address: " + emailAddress + "\n"
-                + "Date of Flight: " + dateOfFlight + "\n"
-                + "Meal Preference: " + mealPreference + "\n"
-                + "Departure & Destination: " + departureAndDestination + "\n"
-                + "Additional Services: " + additionalServices;
-        
-        JOptionPane.showMessageDialog(this, message, "Booking Confirmation", JOptionPane.INFORMATION_MESSAGE);
-
+    if (!additionalServices.isEmpty()) {
+        additionalServices = additionalServices.substring(0, additionalServices.length() - 2);
+    } else {
+        additionalServices = "None";
     }
+
+    // Get selected seat
+    String selectedSeat = (currentlySelectedSeat != null) ? currentlySelectedSeat.getText() : "None";
+
+    // Display confirmation message
+    String message = "Flight Confirmed!\n"
+            + "Name: " + name + "\n"
+            + "Age: " + age + "\n"
+            + "Address: " + address + "\n"
+            + "Nationality: " + nationality + "\n"
+            + "Gender: " + gender + "\n"
+            + "Passport Number: " + passportNumber + "\n"
+            + "Contact Number: " + contactNumber + "\n"
+            + "Email Address: " + emailAddress + "\n"
+            + "Date of Flight: " + dateOfFlight + "\n"
+            + "Meal Preference: " + mealPreference + "\n"
+            + "Departure & Destination: " + departureAndDestination + "\n"
+            + "Selected Seat: " + selectedSeat + "\n"
+            + "Additional Services: " + additionalServices;
+
+    JOptionPane.showMessageDialog(this, message, "Booking Confirmation", JOptionPane.INFORMATION_MESSAGE);
+}
     }//GEN-LAST:event_b_confirmActionPerformed
 
     private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
-     int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear all fields?", "Confirmation", JOptionPane.YES_NO_OPTION);
-    if (result == JOptionPane.YES_OPTION) {
-        // Clear all input fields
-        tf_name.setText("");
-        tf_age.setText("");
-        tf_address.setText("");
-        cb_nationality.setSelectedIndex(0);
-        rb_male.setSelected(false);
-        rb_female.setSelected(false);
-        rb_others.setSelected(false);
-        tf_passportNumber.setText("");
-        tf_contactNumber.setText("");
-        tf_emailAddress.setText("");
-        tf_dateofflight.setText("");
-        cb_mealPreference.setSelectedIndex(0);
-        cb_departureAndDestination.setSelectedIndex(0);
-        chb_pwdAssistance.setSelected(false);
-        chb_extraBaggage.setSelected(false);
-        chb_extraSnacksAndDrinks.setSelected(false);
-        chb_inflightWifiAccess.setSelected(false);
-        chb_priorityCheckinAndBoarding.setSelected(false);
+int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear all fields?", "Confirmation", JOptionPane.YES_NO_OPTION);
+if (result == JOptionPane.YES_OPTION) {
+    // Clear all 
+    tf_name.setText("");
+    tf_age.setText("");
+    tf_address.setText("");
+    cb_nationality.setSelectedIndex(0);
+    rb_male.setSelected(false);
+    rb_female.setSelected(false);
+    rb_others.setSelected(false);
+    tf_passportNumber.setText("");
+    tf_contactNumber.setText("");
+    tf_emailAddress.setText("");
+    tf_dateofflight.setText("");
+    cb_mealPreference.setSelectedIndex(0);
+    cb_departureAndDestination.setSelectedIndex(0);
+    chb_pwdAssistance.setSelected(false);
+    chb_extraBaggage.setSelected(false);
+    chb_extraSnacksAndDrinks.setSelected(false);
+    chb_inflightWifiAccess.setSelected(false);
+    chb_priorityCheckinAndBoarding.setSelected(false);
     
-        }   
+    // Reset 
+    if (currentlySelectedSeat != null) {
+        currentlySelectedSeat.setBackground(Color.GREEN); // Reset color
+        currentlySelectedSeat = null;
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 2; j++) {
+            F1SeatList[i][j] = "vacant";
+        }
+    }
+
+    // Refresh 
+    CheckSeatList(F1SeatList);
+}
     }//GEN-LAST:event_b_clearActionPerformed
 
     private void tf_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nameActionPerformed
@@ -892,6 +907,14 @@ public class main extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_tf_contactNumberKeyTyped
 
+    private void tf_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ageKeyTyped
+ char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+        Toolkit.getDefaultToolkit().beep();
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ageKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -970,7 +993,9 @@ public class main extends javax.swing.JFrame {
             seatButton.setBackground(Color.YELLOW);
             currentlySelectedSeat = seatButton;
         }
+        
     }
+          
           
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
