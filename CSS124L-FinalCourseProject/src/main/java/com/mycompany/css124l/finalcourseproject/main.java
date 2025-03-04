@@ -5,6 +5,7 @@
 package com.mycompany.css124l.finalcourseproject;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -176,43 +177,160 @@ public class main extends javax.swing.JFrame {
 
         l_address.setText("Address:");
 
+        tf_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nameActionPerformed(evt);
+            }
+        });
+
+        tf_address.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_addressActionPerformed(evt);
+            }
+        });
+
         l_age.setText("Age:");
+
+        tf_age.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_ageActionPerformed(evt);
+            }
+        });
 
         l_nationality.setText("Nationality:");
 
         l_gender.setText("Gender:");
 
         rb_male.setText("Male");
+        rb_male.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rb_maleItemStateChanged(evt);
+            }
+        });
+        rb_male.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_maleActionPerformed(evt);
+            }
+        });
 
         cb_nationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Nationality", "Filipino", "American", "American", "Chinese", "Filipino", "Japanese", "Korean", "Singaporean", "Spanish" }));
+        cb_nationality.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_nationalityActionPerformed(evt);
+            }
+        });
 
         rb_female.setText("Female");
+        rb_female.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rb_femaleItemStateChanged(evt);
+            }
+        });
+        rb_female.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_femaleActionPerformed(evt);
+            }
+        });
 
         rb_others.setText("Others");
+        rb_others.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rb_othersItemStateChanged(evt);
+            }
+        });
+        rb_others.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_othersActionPerformed(evt);
+            }
+        });
 
         l_passportNumber.setText("Passport Number:");
 
         l_contactNumber.setText("Contact Number:");
 
+        tf_passportNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_passportNumberActionPerformed(evt);
+            }
+        });
+        tf_passportNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tf_passportNumberKeyTyped(evt);
+            }
+        });
+
+        tf_contactNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_contactNumberActionPerformed(evt);
+            }
+        });
+        tf_contactNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tf_contactNumberKeyTyped(evt);
+            }
+        });
+
         l_emailAddress.setText("Email Address:");
 
+        tf_emailAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_emailAddressActionPerformed(evt);
+            }
+        });
+
         l_dateOfFlight.setText("Date of Flight:");
+
+        tf_dateofflight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_dateofflightActionPerformed(evt);
+            }
+        });
 
         l_mealPreference.setText("Meal Preference:");
 
         cb_mealPreference.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Meal", "Regular Meal", "Vegetarian Meal", "Kiddie Meal", "Salad Meal" }));
+        cb_mealPreference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_mealPreferenceActionPerformed(evt);
+            }
+        });
 
         l_additionalServices.setText("Additional Services:");
 
         chb_pwdAssistance.setText("PWD assistance");
+        chb_pwdAssistance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_pwdAssistanceActionPerformed(evt);
+            }
+        });
 
         chb_extraBaggage.setText("Extra Baggage");
+        chb_extraBaggage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_extraBaggageActionPerformed(evt);
+            }
+        });
 
         chb_extraSnacksAndDrinks.setText("Extra Snacks & Drinks");
+        chb_extraSnacksAndDrinks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_extraSnacksAndDrinksActionPerformed(evt);
+            }
+        });
 
         chb_inflightWifiAccess.setText("In-Flight Wi-Fi Access");
+        chb_inflightWifiAccess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_inflightWifiAccessActionPerformed(evt);
+            }
+        });
 
         chb_priorityCheckinAndBoarding.setText("Priority Check in & Boarding");
+        chb_priorityCheckinAndBoarding.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_priorityCheckinAndBoardingActionPerformed(evt);
+            }
+        });
 
         l_flightCostSummary.setText("Flight Cost Summary:");
 
@@ -223,6 +341,11 @@ public class main extends javax.swing.JFrame {
         l_departureAndDestination.setText("Departure & Destination:");
 
         cb_departureAndDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Destination", "Bicol International Airport", "Clark International Airport", "Mactan-Cebu International Airport", "NAIA" }));
+        cb_departureAndDestination.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_departureAndDestinationActionPerformed(evt);
+            }
+        });
 
         l_addtionalNotes.setText("Additional Notes:");
 
@@ -570,20 +693,204 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_b_seat_4bActionPerformed
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
+    int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
+    if (result == JOptionPane.YES_OPTION) {
+        //values 
+        String name = tf_name.getText();
+        String age = tf_age.getText();
+        String address = tf_address.getText();
+        String nationality = (String) cb_nationality.getSelectedItem();
+        String gender = rb_male.isSelected() ? "Male" : rb_female.isSelected() ? "Female" : rb_others.isSelected() ? "Others" : "Not Selected";
+        String passportNumber = tf_passportNumber.getText();
+        String contactNumber = tf_contactNumber.getText();
+        String emailAddress = tf_emailAddress.getText();
+        String dateOfFlight = tf_dateofflight.getText();
+        String mealPreference = (String) cb_mealPreference.getSelectedItem();
+        String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
 
-        int result = JOptionPane.showConfirmDialog(this, "Do you want to confirm this booking?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-            String flightNumber = (String) comB_flightNumber.getSelectedItem();
-            JOptionPane.showMessageDialog(this, "Flight Confirmed!\nFlight Number: " + flightNumber, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-        }   
+        // Additional services
+        String additionalServices = "";
+        if (chb_pwdAssistance.isSelected()) additionalServices += "PWD Assistance, ";
+        if (chb_extraBaggage.isSelected()) additionalServices += "Extra Baggage, ";
+        if (chb_extraSnacksAndDrinks.isSelected()) additionalServices += "Extra Snacks & Drinks, ";
+        if (chb_inflightWifiAccess.isSelected()) additionalServices += "In-Flight Wi-Fi Access, ";
+        if (chb_priorityCheckinAndBoarding.isSelected()) additionalServices += "Priority Check-in & Boarding, ";
+        
+        if (!additionalServices.isEmpty()) {
+            additionalServices = additionalServices.substring(0, additionalServices.length() - 2);
+        } else {
+            additionalServices = "None";
+        }
+
+        // Display 
+        String message = "Flight Confirmed!\n"
+                + "Name: " + name + "\n"
+                + "Age: " + age + "\n"
+                + "Address: " + address + "\n"
+                + "Nationality: " + nationality + "\n"
+                + "Gender: " + gender + "\n"
+                + "Passport Number: " + passportNumber + "\n"
+                + "Contact Number: " + contactNumber + "\n"
+                + "Email Address: " + emailAddress + "\n"
+                + "Date of Flight: " + dateOfFlight + "\n"
+                + "Meal Preference: " + mealPreference + "\n"
+                + "Departure & Destination: " + departureAndDestination + "\n"
+                + "Additional Services: " + additionalServices;
+        
+        JOptionPane.showMessageDialog(this, message, "Booking Confirmation", JOptionPane.INFORMATION_MESSAGE);
+
+    }
     }//GEN-LAST:event_b_confirmActionPerformed
 
     private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
-        int result = JOptionPane.showConfirmDialog(this, "Do you want to clear all fields", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-            // clear all fields
+     int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear all fields?", "Confirmation", JOptionPane.YES_NO_OPTION);
+    if (result == JOptionPane.YES_OPTION) {
+        // Clear all input fields
+        tf_name.setText("");
+        tf_age.setText("");
+        tf_address.setText("");
+        cb_nationality.setSelectedIndex(0);
+        rb_male.setSelected(false);
+        rb_female.setSelected(false);
+        rb_others.setSelected(false);
+        tf_passportNumber.setText("");
+        tf_contactNumber.setText("");
+        tf_emailAddress.setText("");
+        tf_dateofflight.setText("");
+        cb_mealPreference.setSelectedIndex(0);
+        cb_departureAndDestination.setSelectedIndex(0);
+        chb_pwdAssistance.setSelected(false);
+        chb_extraBaggage.setSelected(false);
+        chb_extraSnacksAndDrinks.setSelected(false);
+        chb_inflightWifiAccess.setSelected(false);
+        chb_priorityCheckinAndBoarding.setSelected(false);
+    
         }   
     }//GEN-LAST:event_b_clearActionPerformed
+
+    private void tf_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tf_nameActionPerformed
+
+    private void tf_ageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ageActionPerformed
+
+    private void tf_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_addressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_addressActionPerformed
+
+    private void cb_nationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_nationalityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_nationalityActionPerformed
+
+    private void rb_maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_maleActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_rb_maleActionPerformed
+
+    private void rb_femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_femaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_femaleActionPerformed
+
+    private void rb_othersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_othersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_othersActionPerformed
+
+    private void tf_passportNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passportNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_passportNumberActionPerformed
+
+    private void tf_contactNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contactNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_contactNumberActionPerformed
+
+    private void tf_emailAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_emailAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_emailAddressActionPerformed
+
+    private void tf_dateofflightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_dateofflightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_dateofflightActionPerformed
+
+    private void cb_mealPreferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mealPreferenceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_mealPreferenceActionPerformed
+
+    private void cb_departureAndDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_departureAndDestinationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_departureAndDestinationActionPerformed
+
+    private void chb_pwdAssistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_pwdAssistanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb_pwdAssistanceActionPerformed
+
+    private void chb_extraBaggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraBaggageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb_extraBaggageActionPerformed
+
+    private void chb_extraSnacksAndDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraSnacksAndDrinksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb_extraSnacksAndDrinksActionPerformed
+
+    private void chb_inflightWifiAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_inflightWifiAccessActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb_inflightWifiAccessActionPerformed
+
+    private void chb_priorityCheckinAndBoardingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_priorityCheckinAndBoardingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb_priorityCheckinAndBoardingActionPerformed
+
+    private void rb_maleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_maleItemStateChanged
+         if (rb_male.isSelected()) {
+        rb_female.setEnabled(false);
+        rb_others.setEnabled(false);
+    } else {
+        rb_female.setEnabled(true);
+        rb_others.setEnabled(true);
+    }
+    }//GEN-LAST:event_rb_maleItemStateChanged
+
+    private void rb_femaleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_femaleItemStateChanged
+        // TODO add your handling code here:
+         if (rb_female.isSelected()) {
+        rb_male.setEnabled(false);
+        rb_others.setEnabled(false);
+    } else {
+        rb_male.setEnabled(true);
+        rb_others.setEnabled(true);
+    }
+    }//GEN-LAST:event_rb_femaleItemStateChanged
+
+    private void rb_othersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_othersItemStateChanged
+        // TODO add your handling code here:
+        if (rb_others.isSelected()) {
+        rb_male.setEnabled(false);
+        rb_female.setEnabled(false);
+    } else {
+        rb_male.setEnabled(true);
+        rb_female.setEnabled(true);
+    }
+    }//GEN-LAST:event_rb_othersItemStateChanged
+
+    private void tf_passportNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_passportNumberKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+        Toolkit.getDefaultToolkit().beep();
+    }
+    }//GEN-LAST:event_tf_passportNumberKeyTyped
+
+    private void tf_contactNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_contactNumberKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+        Toolkit.getDefaultToolkit().beep(); 
+    }
+    }//GEN-LAST:event_tf_contactNumberKeyTyped
 
     /**
      * @param args the command line arguments

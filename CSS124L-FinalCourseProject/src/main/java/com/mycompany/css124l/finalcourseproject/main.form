@@ -290,8 +290,14 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="tf_name">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_nameActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.TextField" name="tf_address">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_addressActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_age">
               <Properties>
@@ -299,6 +305,9 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="tf_age">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_ageActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_nationality">
               <Properties>
@@ -314,6 +323,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Male"/>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rb_maleItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_maleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cb_nationality">
               <Properties>
@@ -332,6 +345,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_nationalityActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -340,11 +356,19 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Female"/>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rb_femaleItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_femaleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rb_others">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Others"/>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rb_othersItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_othersActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_passportNumber">
               <Properties>
@@ -357,8 +381,16 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="tf_passportNumber">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_passportNumberActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tf_passportNumberKeyTyped"/>
+              </Events>
             </Component>
             <Component class="java.awt.TextField" name="tf_contactNumber">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_contactNumberActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tf_contactNumberKeyTyped"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_emailAddress">
               <Properties>
@@ -366,6 +398,9 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="tf_emailAddress">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_emailAddressActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_dateOfFlight">
               <Properties>
@@ -373,6 +408,9 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="tf_dateofflight">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_dateofflightActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Label" name="l_mealPreference">
               <Properties>
@@ -391,6 +429,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_mealPreferenceActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -404,26 +445,41 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="PWD assistance"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chb_pwdAssistanceActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chb_extraBaggage">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Extra Baggage"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chb_extraBaggageActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chb_extraSnacksAndDrinks">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Extra Snacks &amp; Drinks"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chb_extraSnacksAndDrinksActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chb_inflightWifiAccess">
               <Properties>
                 <Property name="text" type="java.lang.String" value="In-Flight Wi-Fi Access"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chb_inflightWifiAccessActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chb_priorityCheckinAndBoarding">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Priority Check in &amp; Boarding"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chb_priorityCheckinAndBoardingActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="l_flightCostSummary">
               <Properties>
@@ -462,6 +518,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_departureAndDestinationActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
