@@ -17,6 +17,8 @@ public class main extends javax.swing.JFrame {
         "vacant" = will turn the seat button GREEN
         "occupied" or any other words = will turn the seat button RED
     */
+    
+    JButton currentlySelectedSeat;
     static String[][] F1SeatList = {
         {"vacant", "vacant"},
         {"vacant", "vacant"},
@@ -562,6 +564,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_b_seat_4bActionPerformed
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
+
         // TODO add your handling code here:
         if (currentlySelectedSeat != null) {
             currentlySelectedSeat.setBackground(Color.RED);
@@ -644,7 +647,7 @@ public class main extends javax.swing.JFrame {
         else {
             // If another seat was selected, turn it green
             if (currentlySelectedSeat != null) {
-                currentlySelectedSeat.setBackground(Color.GREEN);
+               currentlySelectedSeat.setBackground(Color.GREEN);
             }
             // Mark this seat as selected
             seatButton.setBackground(Color.YELLOW);
