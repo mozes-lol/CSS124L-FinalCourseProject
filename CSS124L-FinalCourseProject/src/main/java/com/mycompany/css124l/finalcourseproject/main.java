@@ -530,6 +530,11 @@ public class main extends javax.swing.JFrame {
 
         b_seat_1a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_1a.setText("1A");
+        b_seat_1a.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_1aMouseEntered(evt);
+            }
+        });
         b_seat_1a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_1aActionPerformed(evt);
@@ -914,6 +919,11 @@ if (result == JOptionPane.YES_OPTION) {
         Toolkit.getDefaultToolkit().beep();
     }        // TODO add your handling code here:
     }//GEN-LAST:event_tf_ageKeyTyped
+
+    private void b_seat_1aMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_1aMouseEntered
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_1aMouseEntered
 
     /**
      * @param args the command line arguments
