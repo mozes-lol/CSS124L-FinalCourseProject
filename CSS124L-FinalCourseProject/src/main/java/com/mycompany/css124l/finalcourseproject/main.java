@@ -30,13 +30,22 @@ public class main extends javax.swing.JFrame {
         {"vacant", "vacant"},
         {"vacant", "vacant"}
     };
+    // I really needed this to visualize what the hell is going on in the seat list
+    public void ConsoleCheckSeatList(String[][] SeatList) {
+        for (int row = 0; row < 4; row++) {
+            System.out.println("\n");
+            for (int col = 0; col < 2; col++) {
+                System.out.print(SeatList[row][col] + " ");
+            }
+        }
+    }
 
     public main() {
         initComponents();
-        CheckSeatList(F1SeatList); // Check seat availability on startup
+        UpdateSeatList(F1SeatList); // Check seat availability on startup
     }
     
-    public void CheckSeatList(String[][] SeatList) {
+    public void UpdateSeatList(String[][] SeatList) {
         JButton[][] buttons = {
             {b_seat_1a, b_seat_1b},
             {b_seat_2a, b_seat_2b},
@@ -61,11 +70,13 @@ public class main extends javax.swing.JFrame {
         }
         currentlySelectedSeat = seat;
         currentlySelectedSeat.setBackground(Color.YELLOW); // Highlight selected seat
-
+        currentlySelectedSeatIndex[0] = row;
+        currentlySelectedSeatIndex[1] = col;
         // Mark the seat as "selected" internally
         F1SeatList[row][col] = "selected"; 
-        
+        System.out.println(F1SeatList);
         System.out.println("Selected Seat: " + seat.getText());
+        ConsoleCheckSeatList(F1SeatList);
     }
     
 
@@ -639,65 +650,57 @@ public class main extends javax.swing.JFrame {
     private void comB_flightNumberItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comB_flightNumberItemStateChanged
         switch(comB_flightNumber.getSelectedItem().toString()) {
             case "F1":
-                CheckSeatList(F1SeatList);
+                UpdateSeatList(F1SeatList);
                 break;
             case "F2":
-                CheckSeatList(F2SeatList);
+                UpdateSeatList(F2SeatList);
                 break;
         }
     }//GEN-LAST:event_comB_flightNumberItemStateChanged
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:\
-        CheckSeatList(F1SeatList);
+        UpdateSeatList(F1SeatList);
     }//GEN-LAST:event_formWindowOpened
 
     private void b_seat_1aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1aActionPerformed
         // TODO add your handling code here:
         seatButtonClicked(b_seat_1a, 0, 0);
-        currentlySelectedSeatIndex[0] = 0; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_1aActionPerformed
 
     private void b_seat_1bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1bActionPerformed
         // TODO add your handling code here:
        seatButtonClicked(b_seat_1b, 0, 1);
-       currentlySelectedSeatIndex[0] = 0; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_1bActionPerformed
 
     private void b_seat_2aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2aActionPerformed
         // TODO add your handling code here:
        seatButtonClicked(b_seat_2a, 1, 0);
-       currentlySelectedSeatIndex[0] = 1; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_2aActionPerformed
 
     private void b_seat_2bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_2b, 1, 1);
-         currentlySelectedSeatIndex[0] = 1; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_2bActionPerformed
 
     private void b_seat_3aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3aActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_3a, 2, 0);
-         currentlySelectedSeatIndex[0] = 2; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_3aActionPerformed
 
     private void b_seat_3bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_3b, 2, 1);
-         currentlySelectedSeatIndex[0] = 2; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_3bActionPerformed
 
     private void b_seat_4aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4aActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_4a, 3, 0);
-         currentlySelectedSeatIndex[0] = 3; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_4aActionPerformed
 
     private void b_seat_4bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_4b, 3, 1);
-         currentlySelectedSeatIndex[0] = 3; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_4bActionPerformed
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
@@ -736,11 +739,12 @@ if (result == JOptionPane.YES_OPTION) {
     // Where which flight number the seat occupation belongs to will depend on this
     switch(comB_flightNumber.getSelectedItem().toString()) {
         case "F1":
-            
-            CheckSeatList(F1SeatList);
+            F1SeatList[currentlySelectedSeatIndex[0]][currentlySelectedSeatIndex[1]] = "occupied";
+            UpdateSeatList(F1SeatList);
             break;
         case "F2":
-            CheckSeatList(F2SeatList);
+            F2SeatList[currentlySelectedSeatIndex[0]][currentlySelectedSeatIndex[1]] = "occupied";
+            UpdateSeatList(F2SeatList);
             break;
     }
 
@@ -799,7 +803,7 @@ if (result == JOptionPane.YES_OPTION) {
     }
 
     // Refresh 
-    CheckSeatList(F1SeatList);
+    UpdateSeatList(F1SeatList);
 }
     }//GEN-LAST:event_b_clearActionPerformed
 
