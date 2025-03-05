@@ -33,6 +33,7 @@ public class main extends javax.swing.JFrame {
     public main() {
         initComponents();
         CheckSeatList(F1SeatList); // Check seat availability on startup
+        b_seat_1a.setToolTipText("Click to select seat 1A");
     }
     
     public void CheckSeatList(String[][] SeatList) {
@@ -53,6 +54,18 @@ public class main extends javax.swing.JFrame {
             }
         }
     }
+private void seatMouseEntered(JButton seat) {
+    if (seat.getBackground() == Color.GREEN) {
+        seat.setBackground(new Color(144, 238, 144)); // Lighter green when hovered
+    } 
+    seat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Change cursor
+}
+
+private void seatMouseExited(JButton seat) {
+    if (seat.getBackground().equals(new Color(144, 238, 144))) {
+        seat.setBackground(Color.GREEN); // Reset to original color
+    }
+}
 
     private void seatButtonClicked(JButton seat, int row, int col) {
         if (currentlySelectedSeat != null) {
@@ -534,6 +547,9 @@ public class main extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_seat_1aMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_1aMouseExited(evt);
+            }
         });
         b_seat_1a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,6 +564,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_1b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_1b.setText("1B");
+        b_seat_1b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_1bMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_1bMouseExited(evt);
+            }
+        });
         b_seat_1b.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_1bActionPerformed(evt);
@@ -561,6 +585,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_2a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_2a.setText("2A");
+        b_seat_2a.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_2aMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_2aMouseExited(evt);
+            }
+        });
         b_seat_2a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_2aActionPerformed(evt);
@@ -574,6 +606,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_2b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_2b.setText("2B");
+        b_seat_2b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_2bMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_2bMouseExited(evt);
+            }
+        });
         b_seat_2b.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_2bActionPerformed(evt);
@@ -587,6 +627,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_3a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_3a.setText("3A");
+        b_seat_3a.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_3aMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_3aMouseExited(evt);
+            }
+        });
         b_seat_3a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_3aActionPerformed(evt);
@@ -600,6 +648,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_3b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_3b.setText("3B");
+        b_seat_3b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_3bMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_3bMouseExited(evt);
+            }
+        });
         b_seat_3b.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_3bActionPerformed(evt);
@@ -613,6 +669,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_4a.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_4a.setText("4A");
+        b_seat_4a.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_4aMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_4aMouseExited(evt);
+            }
+        });
         b_seat_4a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_4aActionPerformed(evt);
@@ -626,6 +690,14 @@ public class main extends javax.swing.JFrame {
 
         b_seat_4b.setBackground(new java.awt.Color(153, 255, 153));
         b_seat_4b.setText("4B");
+        b_seat_4b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_seat_4bMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_seat_4bMouseExited(evt);
+            }
+        });
         b_seat_4b.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seat_4bActionPerformed(evt);
@@ -921,9 +993,74 @@ if (result == JOptionPane.YES_OPTION) {
     }//GEN-LAST:event_tf_ageKeyTyped
 
     private void b_seat_1aMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_1aMouseEntered
-        
+        if (b_seat_1a.getBackground() == Color.GREEN) {
+        b_seat_1a.setBackground(new Color(144, 238, 144));
+    } 
         // TODO add your handling code here:
     }//GEN-LAST:event_b_seat_1aMouseEntered
+
+    private void b_seat_1aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_1aMouseExited
+ if (b_seat_1a.getBackground().equals(new Color(144, 238, 144))) {
+        b_seat_1a.setBackground(Color.GREEN); // Reset to original
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_1aMouseExited
+
+    private void b_seat_1bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_1bMouseEntered
+      
+        seatMouseEntered(b_seat_1b);// TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_1bMouseEntered
+
+    private void b_seat_2aMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_2aMouseEntered
+        seatMouseEntered(b_seat_2a);// TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_2aMouseEntered
+
+    private void b_seat_3aMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_3aMouseEntered
+        seatMouseEntered(b_seat_3a);// TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_3aMouseEntered
+
+    private void b_seat_4aMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_4aMouseEntered
+      seatMouseEntered(b_seat_4a);  // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_4aMouseEntered
+
+    private void b_seat_2bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_2bMouseEntered
+      seatMouseEntered(b_seat_2b);  // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_2bMouseEntered
+
+    private void b_seat_3bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_3bMouseEntered
+seatMouseEntered(b_seat_3b);        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_3bMouseEntered
+
+    private void b_seat_4bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_4bMouseEntered
+seatMouseEntered(b_seat_4b);        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_4bMouseEntered
+
+    private void b_seat_1bMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_1bMouseExited
+seatMouseExited(b_seat_1b);        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_1bMouseExited
+
+    private void b_seat_2bMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_2bMouseExited
+seatMouseExited(b_seat_2b);                // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_2bMouseExited
+
+    private void b_seat_3bMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_3bMouseExited
+seatMouseExited(b_seat_3b);                // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_3bMouseExited
+
+    private void b_seat_4bMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_4bMouseExited
+seatMouseExited(b_seat_4b);                // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_4bMouseExited
+
+    private void b_seat_2aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_2aMouseExited
+seatMouseExited(b_seat_1a);                // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_2aMouseExited
+
+    private void b_seat_3aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_3aMouseExited
+seatMouseExited(b_seat_3a);           // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_3aMouseExited
+
+    private void b_seat_4aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_4aMouseExited
+seatMouseExited(b_seat_4a);           // TODO add your handling code here:
+    }//GEN-LAST:event_b_seat_4aMouseExited
 
     /**
      * @param args the command line arguments
