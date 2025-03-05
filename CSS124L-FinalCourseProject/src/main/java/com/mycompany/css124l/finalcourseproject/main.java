@@ -80,6 +80,10 @@ public class main extends javax.swing.JFrame {
     }
 
     private void seatButtonClicked(JButton seat, int row, int col) {
+        // Prevent the user from selecting occupied seats
+        if (seat.getBackground() == Color.RED) {
+            return;
+        }
         /*
         No need to check which flight number is currently selected. We'll just
         clear both.
