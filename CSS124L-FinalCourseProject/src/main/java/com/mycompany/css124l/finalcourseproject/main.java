@@ -39,6 +39,21 @@ public class main extends javax.swing.JFrame {
             }
         }
     }
+    /*
+    The problem I noticed is the seat in the seat list remained "selected"
+    despite already selecting a different button. To fix this, we'll remove all
+    seats in the seatList array that has the value "selected".
+    */
+    public void ClearSelectedSeats(String[][] SeatList) {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 2; col++) {
+                if (SeatList[row][col] == "selected") // this assumems that all seats that could be incorrectly clicked are "vacant"
+                {
+                    SeatList[row][col] = "vacant";
+                }
+            }
+        }
+    }
 
     public main() {
         initComponents();
@@ -65,6 +80,12 @@ public class main extends javax.swing.JFrame {
     }
 
     private void seatButtonClicked(JButton seat, int row, int col) {
+        /*
+        No need to check which flight number is currently selected. We'll just
+        clear both.
+        */
+        ClearSelectedSeats(F1SeatList);
+        ClearSelectedSeats(F2SeatList);
         if (currentlySelectedSeat != null) {
             currentlySelectedSeat.setBackground(Color.GREEN); // Reset previous seat color
         }
@@ -650,9 +671,11 @@ public class main extends javax.swing.JFrame {
     private void comB_flightNumberItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comB_flightNumberItemStateChanged
         switch(comB_flightNumber.getSelectedItem().toString()) {
             case "F1":
+                ClearSelectedSeats(F1SeatList); // Just an extra measure--Better safe than sorry
                 UpdateSeatList(F1SeatList);
                 break;
             case "F2":
+                ClearSelectedSeats(F1SeatList);
                 UpdateSeatList(F2SeatList);
                 break;
         }
