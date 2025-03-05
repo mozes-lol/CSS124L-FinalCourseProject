@@ -97,7 +97,6 @@ public class main extends javax.swing.JFrame {
         F1SeatList[row][col] = "selected"; 
         System.out.println(F1SeatList);
         System.out.println("Selected Seat: " + seat.getText());
-        ConsoleCheckSeatList(F1SeatList);
     }
     
 
