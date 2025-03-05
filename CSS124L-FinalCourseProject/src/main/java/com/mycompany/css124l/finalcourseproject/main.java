@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class main extends javax.swing.JFrame {
     
     private JButton currentlySelectedSeat = null; // Store the selected seat
+    private int[] currentlySelectedSeatIndex = {0, 0}; // will involve two numbers (row and column) that will go in tandem with the variable above
     static String[][] F1SeatList = {
         {"vacant", "vacant"},
         {"vacant", "vacant"},
@@ -654,41 +655,49 @@ public class main extends javax.swing.JFrame {
     private void b_seat_1aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1aActionPerformed
         // TODO add your handling code here:
         seatButtonClicked(b_seat_1a, 0, 0);
+        currentlySelectedSeatIndex[0] = 0; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_1aActionPerformed
 
     private void b_seat_1bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1bActionPerformed
         // TODO add your handling code here:
        seatButtonClicked(b_seat_1b, 0, 1);
+       currentlySelectedSeatIndex[0] = 0; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_1bActionPerformed
 
     private void b_seat_2aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2aActionPerformed
         // TODO add your handling code here:
        seatButtonClicked(b_seat_2a, 1, 0);
+       currentlySelectedSeatIndex[0] = 1; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_2aActionPerformed
 
     private void b_seat_2bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_2bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_2b, 1, 1);
+         currentlySelectedSeatIndex[0] = 1; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_2bActionPerformed
 
     private void b_seat_3aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3aActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_3a, 2, 0);
+         currentlySelectedSeatIndex[0] = 2; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_3aActionPerformed
 
     private void b_seat_3bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_3bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_3b, 2, 1);
+         currentlySelectedSeatIndex[0] = 2; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_3bActionPerformed
 
     private void b_seat_4aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4aActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_4a, 3, 0);
+         currentlySelectedSeatIndex[0] = 3; currentlySelectedSeatIndex[1] = 0;
     }//GEN-LAST:event_b_seat_4aActionPerformed
 
     private void b_seat_4bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_4bActionPerformed
         // TODO add your handling code here:
          seatButtonClicked(b_seat_4b, 3, 1);
+         currentlySelectedSeatIndex[0] = 3; currentlySelectedSeatIndex[1] = 1;
     }//GEN-LAST:event_b_seat_4bActionPerformed
 
     private void b_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmActionPerformed
@@ -706,6 +715,7 @@ if (result == JOptionPane.YES_OPTION) {
     String dateOfFlight = tf_dateofflight.getText();
     String mealPreference = (String) cb_mealPreference.getSelectedItem();
     String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
+    currentlySelectedSeat.setBackground(Color.red);
     
     // Get additional services
     String additionalServices = "";
@@ -723,6 +733,16 @@ if (result == JOptionPane.YES_OPTION) {
 
     // Get selected seat
     String selectedSeat = (currentlySelectedSeat != null) ? currentlySelectedSeat.getText() : "None";
+    // Where which flight number the seat occupation belongs to will depend on this
+    switch(comB_flightNumber.getSelectedItem().toString()) {
+        case "F1":
+            
+            CheckSeatList(F1SeatList);
+            break;
+        case "F2":
+            CheckSeatList(F2SeatList);
+            break;
+    }
 
     // Display confirmation message
     String message = "Flight Confirmed!\n"
