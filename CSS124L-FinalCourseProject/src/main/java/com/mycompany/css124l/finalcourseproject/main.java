@@ -82,6 +82,7 @@ public class main extends javax.swing.JFrame {
     private void seatButtonClicked(JButton seat, int row, int col) {
         // Prevent the user from selecting occupied seats
         if (seat.getBackground() == Color.RED) {
+            Toolkit.getDefaultToolkit().beep();
             return;
         }
         /*
