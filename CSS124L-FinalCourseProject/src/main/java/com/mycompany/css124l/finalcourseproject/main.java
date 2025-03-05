@@ -57,7 +57,7 @@ public class main extends javax.swing.JFrame {
 
     public main() {
         initComponents();
-        CheckSeatList(F1SeatList); // Check seat availability on startup
+        UpdateSeatList(F1SeatList); // Check seat availability on startup
         b_seat_1a.setToolTipText("Click to select seat 1A");
     }
     
