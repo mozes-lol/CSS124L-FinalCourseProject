@@ -86,7 +86,7 @@ public class main extends javax.swing.JFrame {
         */
         ClearSelectedSeats(F1SeatList);
         ClearSelectedSeats(F2SeatList);
-        if (currentlySelectedSeat != null) {
+        if (currentlySelectedSeat != null && currentlySelectedSeat.getBackground() != Color.RED) {
             currentlySelectedSeat.setBackground(Color.GREEN); // Reset previous seat color
         }
         currentlySelectedSeat = seat;
