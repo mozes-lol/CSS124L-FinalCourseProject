@@ -32,6 +32,7 @@ public class main extends javax.swing.JFrame {
 
     public main() {
         initComponents();
+        updateFlightCostSummary();
         CheckSeatList(F1SeatList); // Check seat availability on startup
         b_seat_1a.setToolTipText("Click to select seat 1A");
         b_confirm.setEnabled(false);
@@ -73,6 +74,41 @@ public class main extends javax.swing.JFrame {
     
     b_confirm.setEnabled(isComplete);
 }
+    private void updateFlightCostSummary() {
+    String selectedDestination = cb_departureAndDestination.getSelectedItem().toString();
+    
+    // Ensure the default destination is selected if not manually chosen
+    if (selectedDestination.equals("Select Destination")) {
+        selectedDestination = "Bicol International Airport"; // Set a default
+        cb_departureAndDestination.setSelectedItem(selectedDestination);
+    }
+    
+    int baseFare = getBaseFare(selectedDestination);
+    int additionalCost = 0;
+
+    if (chb_extraBaggage.isSelected()) additionalCost += 500;
+    if (chb_extraSnacksAndDrinks.isSelected()) additionalCost += 200;
+    if (chb_inflightWifiAccess.isSelected()) additionalCost += 300;
+    if (chb_priorityCheckinAndBoarding.isSelected()) additionalCost += 400;
+
+    int totalCost = baseFare + additionalCost;
+
+    // Update the text area with the cost breakdown
+    ta_flightCostSummary.setText("Destination: " + selectedDestination + "\n"
+                               + "Base Fare: ₱" + baseFare + "\n"
+                               + "Additional Charges: ₱" + additionalCost + "\n"
+                               + "Total Cost: ₱" + totalCost);
+}
+private int getBaseFare(String destination) {
+    switch (destination) {
+        case "Bicol International Airport": return 2000;
+        case "Clark International Airport": return 2500;
+        case "Mactan-Cebu International Airport": return 3000;
+        case "NAIA": return 3500;
+        default: return 0; // If no valid destination is selected
+    }
+}
+
 
 private void seatMouseEntered(JButton seat) {
     if (seat.getBackground() == Color.GREEN) {
@@ -97,7 +133,6 @@ private void seatMouseExited(JButton seat) {
         
         F1SeatList[row][col] = "selected"; 
         
-        System.out.println("Selected Seat: " + seat.getText());
         checkFormCompletion();
     }
     
@@ -875,7 +910,7 @@ if (result == JOptionPane.YES_OPTION) {
             F1SeatList[i][j] = "vacant";
         }
     }
-
+ updateFlightCostSummary();
     // Refresh 
     CheckSeatList(F1SeatList);
 }
@@ -932,27 +967,33 @@ checkFormCompletion();        // TODO add your handling code here:
     }//GEN-LAST:event_cb_mealPreferenceActionPerformed
 
     private void cb_departureAndDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_departureAndDestinationActionPerformed
-      checkFormCompletion();  // TODO add your handling code here:
+     updateFlightCostSummary();
+        checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_cb_departureAndDestinationActionPerformed
 
     private void chb_pwdAssistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_pwdAssistanceActionPerformed
-      checkFormCompletion();  // TODO add your handling code here:
+       updateFlightCostSummary();
+       checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_chb_pwdAssistanceActionPerformed
 
     private void chb_extraBaggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraBaggageActionPerformed
-       checkFormCompletion(); // TODO add your handling code here:
+       checkFormCompletion();
+        updateFlightCostSummary();// TODO add your handling code here:
     }//GEN-LAST:event_chb_extraBaggageActionPerformed
 
     private void chb_extraSnacksAndDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraSnacksAndDrinksActionPerformed
-    checkFormCompletion();    // TODO add your handling code here:
+    checkFormCompletion();   
+     updateFlightCostSummary();// TODO add your handling code here:
     }//GEN-LAST:event_chb_extraSnacksAndDrinksActionPerformed
 
     private void chb_inflightWifiAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_inflightWifiAccessActionPerformed
-     checkFormCompletion();   // TODO add your handling code here:
+     checkFormCompletion();   
+ updateFlightCostSummary();// TODO add your handling code here:
     }//GEN-LAST:event_chb_inflightWifiAccessActionPerformed
 
     private void chb_priorityCheckinAndBoardingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_priorityCheckinAndBoardingActionPerformed
-     checkFormCompletion();   // TODO add your handling code here:
+     checkFormCompletion();
+      updateFlightCostSummary();// TODO add your handling code here:
     }//GEN-LAST:event_chb_priorityCheckinAndBoardingActionPerformed
 
     private void rb_maleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_maleItemStateChanged
@@ -1017,6 +1058,7 @@ checkFormCompletion();        // TODO add your handling code here:
         if (b_seat_1a.getBackground() == Color.GREEN) {
         b_seat_1a.setBackground(new Color(144, 238, 144));
     } 
+        seatMouseEntered(b_seat_1a);
         // TODO add your handling code here:
     }//GEN-LAST:event_b_seat_1aMouseEntered
 
