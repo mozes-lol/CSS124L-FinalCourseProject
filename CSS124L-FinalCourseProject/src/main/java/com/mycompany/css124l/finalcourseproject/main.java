@@ -59,6 +59,7 @@ public class main extends javax.swing.JFrame {
         initComponents();
         UpdateSeatList(F1SeatList); // Check seat availability on startup
         b_seat_1a.setToolTipText("Click to select seat 1A");
+        b_confirm.setEnabled(false);
     }
     
     public void UpdateSeatList(String[][] SeatList) {
@@ -79,6 +80,25 @@ public class main extends javax.swing.JFrame {
             }
         }
     }
+    private void checkFormCompletion() {
+    
+    boolean isComplete = !tf_name.getText().trim().isEmpty() &&
+                         !tf_age.getText().trim().isEmpty() &&
+                         !tf_address.getText().trim().isEmpty() &&
+                         cb_nationality.getSelectedIndex() != 0 &&
+                         (rb_male.isSelected() || rb_female.isSelected() || rb_others.isSelected()) &&
+                         !tf_passportNumber.getText().trim().isEmpty() &&
+                         !tf_contactNumber.getText().trim().isEmpty() &&
+                         !tf_emailAddress.getText().trim().isEmpty() &&
+                         !tf_dateofflight.getText().trim().isEmpty() &&
+                         cb_mealPreference.getSelectedIndex() != 0 &&
+                         cb_departureAndDestination.getSelectedIndex() != 0 &&
+                         currentlySelectedSeat != null; 
+
+    
+    b_confirm.setEnabled(isComplete);
+}
+
 private void seatMouseEntered(JButton seat) {
     if (seat.getBackground() == Color.GREEN) {
         seat.setBackground(new Color(144, 238, 144)); // Lighter green when hovered
@@ -115,6 +135,7 @@ private void seatMouseExited(JButton seat) {
         F1SeatList[row][col] = "selected"; 
         System.out.println(F1SeatList);
         System.out.println("Selected Seat: " + seat.getText());
+        checkFormCompletion();
     }
     
 
@@ -912,77 +933,77 @@ if (result == JOptionPane.YES_OPTION) {
     }//GEN-LAST:event_b_clearActionPerformed
 
     private void tf_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nameActionPerformed
-        // TODO add your handling code here:
+    checkFormCompletion();    // TODO add your handling code here:
         
     }//GEN-LAST:event_tf_nameActionPerformed
 
     private void tf_ageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ageActionPerformed
-        // TODO add your handling code here:
+   checkFormCompletion();     // TODO add your handling code here:
     }//GEN-LAST:event_tf_ageActionPerformed
 
     private void tf_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_addressActionPerformed
-        // TODO add your handling code here:
+   checkFormCompletion();     // TODO add your handling code here:
     }//GEN-LAST:event_tf_addressActionPerformed
 
     private void cb_nationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_nationalityActionPerformed
-        // TODO add your handling code here:
+   checkFormCompletion();     // TODO add your handling code here:
     }//GEN-LAST:event_cb_nationalityActionPerformed
 
     private void rb_maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_maleActionPerformed
-        // TODO add your handling code here:
+checkFormCompletion();        // TODO add your handling code here:
         
     }//GEN-LAST:event_rb_maleActionPerformed
 
     private void rb_femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_femaleActionPerformed
-        // TODO add your handling code here:
+    checkFormCompletion();    // TODO add your handling code here:
     }//GEN-LAST:event_rb_femaleActionPerformed
 
     private void rb_othersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_othersActionPerformed
-        // TODO add your handling code here:
+     checkFormCompletion();   // TODO add your handling code here:
     }//GEN-LAST:event_rb_othersActionPerformed
 
     private void tf_passportNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passportNumberActionPerformed
-        // TODO add your handling code here:
+     checkFormCompletion();   // TODO add your handling code here:
     }//GEN-LAST:event_tf_passportNumberActionPerformed
 
     private void tf_contactNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contactNumberActionPerformed
-        // TODO add your handling code here:
+     checkFormCompletion();   // TODO add your handling code here:
     }//GEN-LAST:event_tf_contactNumberActionPerformed
 
     private void tf_emailAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_emailAddressActionPerformed
-        // TODO add your handling code here:
+      checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_tf_emailAddressActionPerformed
 
     private void tf_dateofflightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_dateofflightActionPerformed
-        // TODO add your handling code here:
+       checkFormCompletion(); // TODO add your handling code here:
     }//GEN-LAST:event_tf_dateofflightActionPerformed
 
     private void cb_mealPreferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mealPreferenceActionPerformed
-        // TODO add your handling code here:
+      checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_cb_mealPreferenceActionPerformed
 
     private void cb_departureAndDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_departureAndDestinationActionPerformed
-        // TODO add your handling code here:
+      checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_cb_departureAndDestinationActionPerformed
 
     private void chb_pwdAssistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_pwdAssistanceActionPerformed
-        // TODO add your handling code here:
+      checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_chb_pwdAssistanceActionPerformed
 
     private void chb_extraBaggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraBaggageActionPerformed
-        // TODO add your handling code here:
+       checkFormCompletion(); // TODO add your handling code here:
     }//GEN-LAST:event_chb_extraBaggageActionPerformed
 
     private void chb_extraSnacksAndDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_extraSnacksAndDrinksActionPerformed
-        // TODO add your handling code here:
+    checkFormCompletion();    // TODO add your handling code here:
     }//GEN-LAST:event_chb_extraSnacksAndDrinksActionPerformed
 
     private void chb_inflightWifiAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_inflightWifiAccessActionPerformed
-        // TODO add your handling code here:
+     checkFormCompletion();   // TODO add your handling code here:
     }//GEN-LAST:event_chb_inflightWifiAccessActionPerformed
 
     private void chb_priorityCheckinAndBoardingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_priorityCheckinAndBoardingActionPerformed
-        // TODO add your handling code here:
+     checkFormCompletion();   // TODO add your handling code here:
     }//GEN-LAST:event_chb_priorityCheckinAndBoardingActionPerformed
 
     private void rb_maleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_maleItemStateChanged
@@ -1102,7 +1123,7 @@ seatMouseExited(b_seat_4b);                // TODO add your handling code here:
     }//GEN-LAST:event_b_seat_4bMouseExited
 
     private void b_seat_2aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_2aMouseExited
-seatMouseExited(b_seat_1a);                // TODO add your handling code here:
+seatMouseExited(b_seat_2a);                // TODO add your handling code here:
     }//GEN-LAST:event_b_seat_2aMouseExited
 
     private void b_seat_3aMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_seat_3aMouseExited
