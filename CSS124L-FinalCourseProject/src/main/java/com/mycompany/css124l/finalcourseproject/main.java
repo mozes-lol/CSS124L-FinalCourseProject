@@ -184,6 +184,7 @@ private void seatMouseExited(JButton seat) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gender = new javax.swing.ButtonGroup();
         p_main = new javax.swing.JPanel();
         p_header = new javax.swing.JPanel();
         l_flightNumber = new javax.swing.JLabel();
@@ -307,6 +308,7 @@ private void seatMouseExited(JButton seat) {
 
         l_gender.setText("Gender:");
 
+        gender.add(rb_male);
         rb_male.setText("Male");
         rb_male.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -326,6 +328,7 @@ private void seatMouseExited(JButton seat) {
             }
         });
 
+        gender.add(rb_female);
         rb_female.setText("Female");
         rb_female.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -338,6 +341,7 @@ private void seatMouseExited(JButton seat) {
             }
         });
 
+        gender.add(rb_others);
         rb_others.setText("Others");
         rb_others.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -986,7 +990,7 @@ if (result == JOptionPane.YES_OPTION) {
     }//GEN-LAST:event_cb_nationalityActionPerformed
 
     private void rb_maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_maleActionPerformed
-checkFormCompletion();        // TODO add your handling code here:
+    checkFormCompletion();        // TODO add your handling code here:
         
     }//GEN-LAST:event_rb_maleActionPerformed
 
@@ -1049,35 +1053,36 @@ checkFormCompletion();        // TODO add your handling code here:
     }//GEN-LAST:event_chb_priorityCheckinAndBoardingActionPerformed
 
     private void rb_maleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_maleItemStateChanged
-         if (rb_male.isSelected()) {
-        rb_female.setEnabled(false);
-        rb_others.setEnabled(false);
-    } else {
-        rb_female.setEnabled(true);
-        rb_others.setEnabled(true);
-    }
+//         if (rb_male.isSelected()) {
+//        rb_female.setEnabled(false);
+//        rb_others.setEnabled(false);
+//    } else {
+//        rb_female.setEnabled(true);
+//        rb_others.setEnabled(true);
+//    }
+    // lol no need to do this
     }//GEN-LAST:event_rb_maleItemStateChanged
 
     private void rb_femaleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_femaleItemStateChanged
-        // TODO add your handling code here:
-         if (rb_female.isSelected()) {
-        rb_male.setEnabled(false);
-        rb_others.setEnabled(false);
-    } else {
-        rb_male.setEnabled(true);
-        rb_others.setEnabled(true);
-    }
+//        // TODO add your handling code here:
+//         if (rb_female.isSelected()) {
+//        rb_male.setEnabled(false);
+//        rb_others.setEnabled(false);
+//    } else {
+//        rb_male.setEnabled(true);
+//        rb_others.setEnabled(true);
+//    }
     }//GEN-LAST:event_rb_femaleItemStateChanged
 
     private void rb_othersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_othersItemStateChanged
-        // TODO add your handling code here:
-        if (rb_others.isSelected()) {
-        rb_male.setEnabled(false);
-        rb_female.setEnabled(false);
-    } else {
-        rb_male.setEnabled(true);
-        rb_female.setEnabled(true);
-    }
+//        // TODO add your handling code here:
+//        if (rb_others.isSelected()) {
+//        rb_male.setEnabled(false);
+//        rb_female.setEnabled(false);
+//    } else {
+//        rb_male.setEnabled(true);
+//        rb_female.setEnabled(true);
+//    }
     }//GEN-LAST:event_rb_othersItemStateChanged
 
     private void tf_passportNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_passportNumberKeyTyped
@@ -1308,6 +1313,7 @@ seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     private javax.swing.JCheckBox chb_priorityCheckinAndBoarding;
     private javax.swing.JCheckBox chb_pwdAssistance;
     private javax.swing.JComboBox<String> comB_flightNumber;
+    private javax.swing.ButtonGroup gender;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Label l_additionalServices;
