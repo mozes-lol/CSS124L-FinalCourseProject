@@ -19,6 +19,7 @@ import org.jdesktop.swingx.JXDatePicker;
 
 public class main extends javax.swing.JFrame {
     private JButton currentlySelectedSeat = null; // Store the selected seat
+    private int[] currentlySelectedSeatIndex = {0, 0}; // will involve two numbers (row and column) that will go in tandem with the variable above
     static String[][] F1SeatList = {
         {"vacant", "vacant"},
         {"vacant", "vacant"},
@@ -31,6 +32,30 @@ public class main extends javax.swing.JFrame {
         {"vacant", "vacant"},
         {"vacant", "vacant"}
     };
+    // I really needed this to visualize what the hell is going on in the seat list
+    public void ConsoleCheckSeatList(String[][] SeatList) {
+        for (int row = 0; row < 4; row++) {
+            System.out.println("\n");
+            for (int col = 0; col < 2; col++) {
+                System.out.print(SeatList[row][col] + " ");
+            }
+        }
+    }
+    /*
+    The problem I noticed is the seat in the seat list remained "selected"
+    despite already selecting a different button. To fix this, we'll remove all
+    seats in the seatList array that has the value "selected".
+    */
+    public void ClearSelectedSeats(String[][] SeatList) {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 2; col++) {
+                if (SeatList[row][col] == "selected") // this assumems that all seats that could be incorrectly clicked are "vacant"
+                {
+                    SeatList[row][col] = "vacant";
+                }
+            }
+        }
+    }
 
     public main() {
         initComponents();
@@ -57,13 +82,12 @@ dp_Departure.addActionListener(e -> {
 dp_Arrival.addActionListener(e -> checkFormCompletion());
        
         updateFlightCostSummary();
-        CheckSeatList(F1SeatList); // Check seat availability on startup
+        UpdateSeatList(F1SeatList); // Check seat availability on startup
         b_seat_1a.setToolTipText("Click to select seat 1A");
         b_confirm.setEnabled(false);
     }
     
-    
-    public void CheckSeatList(String[][] SeatList) {
+    public void UpdateSeatList(String[][] SeatList) {
         JButton[][] buttons = {
             {b_seat_1a, b_seat_1b},
             {b_seat_2a, b_seat_2b},
@@ -167,15 +191,28 @@ private void seatMouseExited(JButton seat) {
 }
 
     private void seatButtonClicked(JButton seat, int row, int col) {
-        if (currentlySelectedSeat != null) {
+        // Prevent the user from selecting occupied seats
+        if (seat.getBackground() == Color.RED) {
+            Toolkit.getDefaultToolkit().beep();
+            return;
+        }
+        /*
+        No need to check which flight number is currently selected. We'll just
+        clear both.
+        */
+        ClearSelectedSeats(F1SeatList);
+        ClearSelectedSeats(F2SeatList);
+        if (currentlySelectedSeat != null && currentlySelectedSeat.getBackground() != Color.RED) {
             currentlySelectedSeat.setBackground(Color.GREEN); // Reset previous seat color
         }
         currentlySelectedSeat = seat;
         currentlySelectedSeat.setBackground(Color.YELLOW); // Highlight selected seat
-
-        
+        currentlySelectedSeatIndex[0] = row;
+        currentlySelectedSeatIndex[1] = col;
+        // Mark the seat as "selected" internally
         F1SeatList[row][col] = "selected"; 
-        
+        System.out.println(F1SeatList);
+        System.out.println("Selected Seat: " + seat.getText());
         checkFormCompletion();
     }
     
@@ -189,6 +226,7 @@ private void seatMouseExited(JButton seat) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gender = new javax.swing.ButtonGroup();
         p_main = new javax.swing.JPanel();
         p_header = new javax.swing.JPanel();
         l_flightNumber = new javax.swing.JLabel();
@@ -314,6 +352,7 @@ private void seatMouseExited(JButton seat) {
 
         l_gender.setText("Gender:");
 
+        gender.add(rb_male);
         rb_male.setText("Male");
         rb_male.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -333,6 +372,7 @@ private void seatMouseExited(JButton seat) {
             }
         });
 
+        gender.add(rb_female);
         rb_female.setText("Female");
         rb_female.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -345,6 +385,7 @@ private void seatMouseExited(JButton seat) {
             }
         });
 
+        gender.add(rb_others);
         rb_others.setText("Others");
         rb_others.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -838,17 +879,19 @@ private void seatMouseExited(JButton seat) {
     private void comB_flightNumberItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comB_flightNumberItemStateChanged
         switch(comB_flightNumber.getSelectedItem().toString()) {
             case "F1":
-                CheckSeatList(F1SeatList);
+                ClearSelectedSeats(F1SeatList); // Just an extra measure--Better safe than sorry
+                UpdateSeatList(F1SeatList);
                 break;
             case "F2":
-                CheckSeatList(F2SeatList);
+                ClearSelectedSeats(F1SeatList);
+                UpdateSeatList(F2SeatList);
                 break;
         }
     }//GEN-LAST:event_comB_flightNumberItemStateChanged
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:\
-        CheckSeatList(F1SeatList);
+        UpdateSeatList(F1SeatList);
     }//GEN-LAST:event_formWindowOpened
 
     private void b_seat_1aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seat_1aActionPerformed
@@ -905,6 +948,8 @@ if (result == JOptionPane.YES_OPTION) {
     String emailAddress = tf_emailAddress.getText();
     String mealPreference = (String) cb_mealPreference.getSelectedItem();
     String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
+    currentlySelectedSeat.setBackground(Color.red);
+    
     Date DateofDeparture = dp_Departure.getDate();
     Date DateofArrival = dp_Arrival.getDate();
     // Get additional services
@@ -923,6 +968,17 @@ if (result == JOptionPane.YES_OPTION) {
 
     // Get selected seat
     String selectedSeat = (currentlySelectedSeat != null) ? currentlySelectedSeat.getText() : "None";
+    // Where which flight number the seat occupation belongs to will depend on this
+    switch(comB_flightNumber.getSelectedItem().toString()) {
+        case "F1":
+            F1SeatList[currentlySelectedSeatIndex[0]][currentlySelectedSeatIndex[1]] = "occupied";
+            UpdateSeatList(F1SeatList);
+            break;
+        case "F2":
+            F2SeatList[currentlySelectedSeatIndex[0]][currentlySelectedSeatIndex[1]] = "occupied";
+            UpdateSeatList(F2SeatList);
+            break;
+    }
 
     // Display confirmation message
     String message = "Flight Confirmed!\n"
@@ -982,7 +1038,7 @@ if (result == JOptionPane.YES_OPTION) {
     }
  updateFlightCostSummary();
     // Refresh 
-    CheckSeatList(F1SeatList);
+    UpdateSeatList(F1SeatList);
 }
     }//GEN-LAST:event_b_clearActionPerformed
 
@@ -1004,7 +1060,7 @@ if (result == JOptionPane.YES_OPTION) {
     }//GEN-LAST:event_cb_nationalityActionPerformed
 
     private void rb_maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_maleActionPerformed
-checkFormCompletion();        // TODO add your handling code here:
+    checkFormCompletion();        // TODO add your handling code here:
         
     }//GEN-LAST:event_rb_maleActionPerformed
 
@@ -1063,35 +1119,36 @@ checkFormCompletion();        // TODO add your handling code here:
     }//GEN-LAST:event_chb_priorityCheckinAndBoardingActionPerformed
 
     private void rb_maleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_maleItemStateChanged
-         if (rb_male.isSelected()) {
-        rb_female.setEnabled(false);
-        rb_others.setEnabled(false);
-    } else {
-        rb_female.setEnabled(true);
-        rb_others.setEnabled(true);
-    }
+//         if (rb_male.isSelected()) {
+//        rb_female.setEnabled(false);
+//        rb_others.setEnabled(false);
+//    } else {
+//        rb_female.setEnabled(true);
+//        rb_others.setEnabled(true);
+//    }
+    // lol no need to do this
     }//GEN-LAST:event_rb_maleItemStateChanged
 
     private void rb_femaleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_femaleItemStateChanged
-        // TODO add your handling code here:
-         if (rb_female.isSelected()) {
-        rb_male.setEnabled(false);
-        rb_others.setEnabled(false);
-    } else {
-        rb_male.setEnabled(true);
-        rb_others.setEnabled(true);
-    }
+//        // TODO add your handling code here:
+//         if (rb_female.isSelected()) {
+//        rb_male.setEnabled(false);
+//        rb_others.setEnabled(false);
+//    } else {
+//        rb_male.setEnabled(true);
+//        rb_others.setEnabled(true);
+//    }
     }//GEN-LAST:event_rb_femaleItemStateChanged
 
     private void rb_othersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_othersItemStateChanged
-        // TODO add your handling code here:
-        if (rb_others.isSelected()) {
-        rb_male.setEnabled(false);
-        rb_female.setEnabled(false);
-    } else {
-        rb_male.setEnabled(true);
-        rb_female.setEnabled(true);
-    }
+//        // TODO add your handling code here:
+//        if (rb_others.isSelected()) {
+//        rb_male.setEnabled(false);
+//        rb_female.setEnabled(false);
+//    } else {
+//        rb_male.setEnabled(true);
+//        rb_female.setEnabled(true);
+//    }
     }//GEN-LAST:event_rb_othersItemStateChanged
 
     private void tf_passportNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_passportNumberKeyTyped
@@ -1332,6 +1389,7 @@ seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     private javax.swing.JCheckBox chb_priorityCheckinAndBoarding;
     private javax.swing.JCheckBox chb_pwdAssistance;
     private javax.swing.JComboBox<String> comB_flightNumber;
+    private javax.swing.ButtonGroup gender;
     private org.jdesktop.swingx.JXDatePicker dp_Arrival;
     private org.jdesktop.swingx.JXDatePicker dp_Departure;
     private javax.swing.JScrollPane jScrollPane1;
