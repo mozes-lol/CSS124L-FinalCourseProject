@@ -6,8 +6,11 @@ package com.mycompany.css124l.finalcourseproject;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.JXDatePicker;
+
 
 /**
  *
@@ -15,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 
 public class main extends javax.swing.JFrame {
-    
     private JButton currentlySelectedSeat = null; // Store the selected seat
     static String[][] F1SeatList = {
         {"vacant", "vacant"},
@@ -32,11 +34,34 @@ public class main extends javax.swing.JFrame {
 
     public main() {
         initComponents();
+      // Inside constructor (after initComponents)
+dp_Departure = new JXDatePicker(new Date()); // Start at today’s date
+dp_Arrival = new JXDatePicker();
+
+// Restrict past dates
+Date today = new Date();
+dp_Departure.getMonthView().setLowerBound(today);
+dp_Arrival.getMonthView().setLowerBound(today);
+
+dp_Departure.addActionListener(e -> {
+    Date departureDate = dp_Departure.getDate();
+    if (departureDate != null) {
+        dp_Arrival.getMonthView().setLowerBound(departureDate);
+        if (dp_Arrival.getDate() == null || dp_Arrival.getDate().before(departureDate)) {
+            dp_Arrival.setDate(departureDate); 
+        }
+    }
+    checkFormCompletion();
+});
+
+dp_Arrival.addActionListener(e -> checkFormCompletion());
+       
         updateFlightCostSummary();
         CheckSeatList(F1SeatList); // Check seat availability on startup
         b_seat_1a.setToolTipText("Click to select seat 1A");
         b_confirm.setEnabled(false);
     }
+    
     
     public void CheckSeatList(String[][] SeatList) {
         JButton[][] buttons = {
@@ -58,20 +83,22 @@ public class main extends javax.swing.JFrame {
     }
     private void checkFormCompletion() {
     
-    boolean isComplete = !tf_name.getText().trim().isEmpty() &&
-                         !tf_age.getText().trim().isEmpty() &&
-                         !tf_address.getText().trim().isEmpty() &&
-                         cb_nationality.getSelectedIndex() != 0 &&
-                         (rb_male.isSelected() || rb_female.isSelected() || rb_others.isSelected()) &&
-                         !tf_passportNumber.getText().trim().isEmpty() &&
-                         !tf_contactNumber.getText().trim().isEmpty() &&
-                         !tf_emailAddress.getText().trim().isEmpty() &&
-                         !tf_dateofflight.getText().trim().isEmpty() &&
-                         cb_mealPreference.getSelectedIndex() != 0 &&
-                         cb_departureAndDestination.getSelectedIndex() != 0 &&
-                         currentlySelectedSeat != null; 
+    boolean isComplete;
+        isComplete = !tf_name.getText().trim().isEmpty() &&
+                !tf_age.getText().trim().isEmpty() &&
+                !tf_address.getText().trim().isEmpty() &&
+                cb_nationality.getSelectedIndex() != 0 &&
+                (rb_male.isSelected() || rb_female.isSelected() || rb_others.isSelected()) &&
+                !tf_passportNumber.getText().trim().isEmpty() &&
+                !tf_contactNumber.getText().trim().isEmpty() &&
+                !tf_emailAddress.getText().trim().isEmpty() &&
+                dp_Departure.getDate() != null &&
+                dp_Arrival.getDate() != null &&
+                !dp_Arrival.getDate().before(dp_Departure.getDate()) && 
+                cb_mealPreference.getSelectedIndex() != 0 &&
+                cb_departureAndDestination.getSelectedIndex() != 0 && 
+                currentlySelectedSeat != null;
 
-    
     b_confirm.setEnabled(isComplete);
 }
     private void updateFlightCostSummary() {
@@ -90,13 +117,21 @@ public class main extends javax.swing.JFrame {
     if (chb_extraSnacksAndDrinks.isSelected()) additionalCost += 200;
     if (chb_inflightWifiAccess.isSelected()) additionalCost += 300;
     if (chb_priorityCheckinAndBoarding.isSelected()) additionalCost += 400;
+    int mealCost = getMealCost(cb_mealPreference.getSelectedItem().toString());
+    int totalCost = baseFare + additionalCost + mealCost;
 
-    int totalCost = baseFare + additionalCost;
-
+    if (dp_Departure.getDate() != null && dp_Arrival.getDate() != null) {
+            long daysBetween = (dp_Departure.getDate().getTime() - dp_Arrival.getDate().getTime()) / (1000 * 60 * 60 * 24);
+            if (daysBetween > 0) {
+                totalCost += daysBetween * 500; // Additional charge per travel day
+            }
+        }
+    
     // Update the text area with the cost breakdown
     ta_flightCostSummary.setText("Destination: " + selectedDestination + "\n"
                                + "Base Fare: ₱" + baseFare + "\n"
                                + "Additional Charges: ₱" + additionalCost + "\n"
+                               + "Meal Cost: ₱" + mealCost + "\n"
                                + "Total Cost: ₱" + totalCost);
 }
 private int getBaseFare(String destination) {
@@ -109,7 +144,15 @@ private int getBaseFare(String destination) {
     }
 }
 
-
+private int getMealCost(String mealPreference) {
+        switch (mealPreference) {
+            case "Regular Meal": return 300;
+            case "Vegetarian Meal": return 350;
+            case "Kiddie Meal": return 250;
+            case "Salad Meal": return 400;
+            default: return 0;
+        }
+    }
 private void seatMouseEntered(JButton seat) {
     if (seat.getBackground() == Color.GREEN) {
         seat.setBackground(new Color(144, 238, 144)); // Lighter green when hovered
@@ -169,8 +212,7 @@ private void seatMouseExited(JButton seat) {
         tf_contactNumber = new java.awt.TextField();
         l_emailAddress = new java.awt.Label();
         tf_emailAddress = new java.awt.TextField();
-        l_dateOfFlight = new java.awt.Label();
-        tf_dateofflight = new java.awt.TextField();
+        l_dateOfArrival = new java.awt.Label();
         l_mealPreference = new java.awt.Label();
         cb_mealPreference = new javax.swing.JComboBox<>();
         l_additionalServices = new java.awt.Label();
@@ -187,6 +229,9 @@ private void seatMouseExited(JButton seat) {
         l_addtionalNotes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ta_additionalNotes = new javax.swing.JTextArea();
+        dp_Arrival = new org.jdesktop.swingx.JXDatePicker();
+        l_dateOfDeparture = new java.awt.Label();
+        dp_Departure = new org.jdesktop.swingx.JXDatePicker();
         p_footer = new javax.swing.JPanel();
         b_clear = new javax.swing.JButton();
         b_confirm = new javax.swing.JButton();
@@ -346,13 +391,7 @@ private void seatMouseExited(JButton seat) {
             }
         });
 
-        l_dateOfFlight.setText("Date of Flight:");
-
-        tf_dateofflight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_dateofflightActionPerformed(evt);
-            }
-        });
+        l_dateOfArrival.setText("Date of Arrival:");
 
         l_mealPreference.setText("Meal Preference:");
 
@@ -406,7 +445,7 @@ private void seatMouseExited(JButton seat) {
         ta_flightCostSummary.setRows(5);
         jScrollPane1.setViewportView(ta_flightCostSummary);
 
-        l_departureAndDestination.setText("Departure & Destination:");
+        l_departureAndDestination.setText("Destination:");
 
         cb_departureAndDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Destination", "Bicol International Airport", "Clark International Airport", "Mactan-Cebu International Airport", "NAIA" }));
         cb_departureAndDestination.addActionListener(new java.awt.event.ActionListener() {
@@ -421,129 +460,157 @@ private void seatMouseExited(JButton seat) {
         ta_additionalNotes.setRows(5);
         jScrollPane2.setViewportView(ta_additionalNotes);
 
+        dp_Arrival.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dp_ArrivalActionPerformed(evt);
+            }
+        });
+
+        l_dateOfDeparture.setText("Date of Departure:");
+
+        dp_Departure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dp_DepartureActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout p_bodyLayout = new javax.swing.GroupLayout(p_body);
         p_body.setLayout(p_bodyLayout);
         p_bodyLayout.setHorizontalGroup(
             p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p_bodyLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(p_bodyLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(l_additionalServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135)
-                        .addComponent(l_flightCostSummary))
-                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(p_bodyLayout.createSequentialGroup()
-                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(chb_pwdAssistance)
-                                .addComponent(chb_priorityCheckinAndBoarding)
-                                .addComponent(chb_inflightWifiAccess)
-                                .addComponent(chb_extraSnacksAndDrinks)
-                                .addComponent(chb_extraBaggage))
-                            .addGap(53, 53, 53)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
-                            .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(l_passportNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
-                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(1, 1, 1)
-                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(p_bodyLayout.createSequentialGroup()
-                                        .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tf_age, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(p_bodyLayout.createSequentialGroup()
-                                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(p_bodyLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(l_additionalServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(135, 135, 135)
+                                .addComponent(l_flightCostSummary))
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(p_bodyLayout.createSequentialGroup()
+                                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(chb_pwdAssistance)
+                                        .addComponent(chb_priorityCheckinAndBoarding)
+                                        .addComponent(chb_inflightWifiAccess)
+                                        .addComponent(chb_extraSnacksAndDrinks)
+                                        .addComponent(chb_extraBaggage))
+                                    .addGap(53, 53, 53)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(l_passportNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
+                                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(1, 1, 1)
+                                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(p_bodyLayout.createSequentialGroup()
-                                                .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tf_age, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(p_bodyLayout.createSequentialGroup()
-                                                .addComponent(l_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(rb_male)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(rb_female, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(rb_others)))))
-                                .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createSequentialGroup()
-                            .addComponent(l_dateOfFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(1, 1, 1)
-                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(p_bodyLayout.createSequentialGroup()
+                                                        .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(p_bodyLayout.createSequentialGroup()
+                                                        .addComponent(l_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(rb_male)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(rb_female, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(rb_others)))))
+                                        .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(l_addtionalNotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(p_bodyLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(l_departureAndDestination)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cb_departureAndDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(p_bodyLayout.createSequentialGroup()
-                                    .addComponent(tf_dateofflight, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cb_mealPreference, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addComponent(l_addtionalNotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(l_dateOfDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(p_bodyLayout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addComponent(dp_Departure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(30, 30, 30)
+                                            .addComponent(l_dateOfArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(dp_Arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(p_bodyLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(p_bodyLayout.createSequentialGroup()
+                                .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(p_bodyLayout.createSequentialGroup()
+                                .addComponent(l_departureAndDestination)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_departureAndDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         p_bodyLayout.setVerticalGroup(
             p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p_bodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rb_male, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rb_female, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rb_others))
-                        .addComponent(l_gender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_dateOfFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_dateofflight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(p_bodyLayout.createSequentialGroup()
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(l_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(l_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_nationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rb_male, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rb_female, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rb_others))
+                                .addComponent(l_gender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(l_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_passportNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(l_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(l_dateOfArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dp_Arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dp_Departure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(l_dateOfDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_departureAndDestination)
                     .addComponent(cb_departureAndDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(l_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_mealPreference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(p_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(p_bodyLayout.createSequentialGroup()
                         .addComponent(l_additionalServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -560,11 +627,11 @@ private void seatMouseExited(JButton seat) {
                     .addGroup(p_bodyLayout.createSequentialGroup()
                         .addComponent(l_flightCostSummary)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(l_addtionalNotes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -836,10 +903,10 @@ if (result == JOptionPane.YES_OPTION) {
     String passportNumber = tf_passportNumber.getText();
     String contactNumber = tf_contactNumber.getText();
     String emailAddress = tf_emailAddress.getText();
-    String dateOfFlight = tf_dateofflight.getText();
     String mealPreference = (String) cb_mealPreference.getSelectedItem();
     String departureAndDestination = (String) cb_departureAndDestination.getSelectedItem();
-    
+    Date DateofDeparture = dp_Departure.getDate();
+    Date DateofArrival = dp_Arrival.getDate();
     // Get additional services
     String additionalServices = "";
     if (chb_pwdAssistance.isSelected()) additionalServices += "PWD Assistance, ";
@@ -867,9 +934,9 @@ if (result == JOptionPane.YES_OPTION) {
             + "Passport Number: " + passportNumber + "\n"
             + "Contact Number: " + contactNumber + "\n"
             + "Email Address: " + emailAddress + "\n"
-            + "Date of Flight: " + dateOfFlight + "\n"
+            + "Date of Flight: " + "From" + DateofDeparture + "To" + DateofArrival + "\n"
             + "Meal Preference: " + mealPreference + "\n"
-            + "Departure & Destination: " + departureAndDestination + "\n"
+            + "Destination: " + departureAndDestination + "\n"
             + "Selected Seat: " + selectedSeat + "\n"
             + "Additional Services: " + additionalServices;
 
@@ -880,6 +947,7 @@ if (result == JOptionPane.YES_OPTION) {
     private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
 int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear all fields?", "Confirmation", JOptionPane.YES_NO_OPTION);
 if (result == JOptionPane.YES_OPTION) {
+    Date today = new Date();
     // Clear all 
     tf_name.setText("");
     tf_age.setText("");
@@ -891,7 +959,6 @@ if (result == JOptionPane.YES_OPTION) {
     tf_passportNumber.setText("");
     tf_contactNumber.setText("");
     tf_emailAddress.setText("");
-    tf_dateofflight.setText("");
     cb_mealPreference.setSelectedIndex(0);
     cb_departureAndDestination.setSelectedIndex(0);
     chb_pwdAssistance.setSelected(false);
@@ -899,6 +966,9 @@ if (result == JOptionPane.YES_OPTION) {
     chb_extraSnacksAndDrinks.setSelected(false);
     chb_inflightWifiAccess.setSelected(false);
     chb_priorityCheckinAndBoarding.setSelected(false);
+    dp_Departure.setDate(today);
+    dp_Arrival.setDate(today);
+    dp_Arrival.getMonthView().setLowerBound(today);
     
     // Reset 
     if (currentlySelectedSeat != null) {
@@ -957,10 +1027,6 @@ checkFormCompletion();        // TODO add your handling code here:
     private void tf_emailAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_emailAddressActionPerformed
       checkFormCompletion();  // TODO add your handling code here:
     }//GEN-LAST:event_tf_emailAddressActionPerformed
-
-    private void tf_dateofflightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_dateofflightActionPerformed
-       checkFormCompletion(); // TODO add your handling code here:
-    }//GEN-LAST:event_tf_dateofflightActionPerformed
 
     private void cb_mealPreferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mealPreferenceActionPerformed
       checkFormCompletion();  // TODO add your handling code here:
@@ -1125,6 +1191,16 @@ seatMouseExited(b_seat_3a);           // TODO add your handling code here:
 seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     }//GEN-LAST:event_b_seat_4aMouseExited
 
+    private void dp_ArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dp_ArrivalActionPerformed
+       checkFormCompletion();
+      updateFlightCostSummary();  // TODO add your handling code here:
+    }//GEN-LAST:event_dp_ArrivalActionPerformed
+
+    private void dp_DepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dp_DepartureActionPerformed
+ checkFormCompletion();
+      updateFlightCostSummary();        // TODO add your handling code here:
+    }//GEN-LAST:event_dp_DepartureActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1256,6 +1332,8 @@ seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     private javax.swing.JCheckBox chb_priorityCheckinAndBoarding;
     private javax.swing.JCheckBox chb_pwdAssistance;
     private javax.swing.JComboBox<String> comB_flightNumber;
+    private org.jdesktop.swingx.JXDatePicker dp_Arrival;
+    private org.jdesktop.swingx.JXDatePicker dp_Departure;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Label l_additionalServices;
@@ -1263,7 +1341,8 @@ seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     private javax.swing.JLabel l_addtionalNotes;
     private java.awt.Label l_age;
     private java.awt.Label l_contactNumber;
-    private java.awt.Label l_dateOfFlight;
+    private java.awt.Label l_dateOfArrival;
+    private java.awt.Label l_dateOfDeparture;
     private javax.swing.JLabel l_departureAndDestination;
     private java.awt.Label l_emailAddress;
     private javax.swing.JLabel l_flightCostSummary;
@@ -1294,9 +1373,14 @@ seatMouseExited(b_seat_4a);           // TODO add your handling code here:
     private java.awt.TextField tf_address;
     private java.awt.TextField tf_age;
     private java.awt.TextField tf_contactNumber;
-    private java.awt.TextField tf_dateofflight;
     private java.awt.TextField tf_emailAddress;
     private java.awt.TextField tf_name;
     private java.awt.TextField tf_passportNumber;
     // End of variables declaration//GEN-END:variables
+
+    private static class JDXDatePicker extends JXDatePicker {
+
+        public JDXDatePicker() {
+        }
+    }
 }
